@@ -63,7 +63,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#machine-learning-methods-applied-to-computer-vision" class="md-skip">
+        <a href="#machine-learning-methods-for-computer-vision" class="md-skip">
           Skip to content
         </a>
       
@@ -362,7 +362,7 @@
                   
 
 
-<h1 id="machine-learning-methods-applied-to-computer-vision">Machine Learning methods applied to Computer Vision<a class="headerlink" href="#machine-learning-methods-applied-to-computer-vision" title="Permanent link">&para;</a></h1>
+<h1 id="machine-learning-methods-for-computer-vision">Machine Learning methods for Computer Vision<a class="headerlink" href="#machine-learning-methods-for-computer-vision" title="Permanent link">&para;</a></h1>
 <p>As we have seen, before the deep learning era most computer vision methods used handcrafted features. The difficulty in selecting the most suitable features for a vision task has hindered the reliability of such methods for image detection, classification, and segmentation.</p>
 <p>Nonetheless, some traditional machine learning methods have been successfully applied to computer vision. In this unit, we will see some of them, including dimensionality reduction (particularly, Bag of Words applied to local descriptors), and face detection and recognition (Viola-Jones and EigenFaces) that have been successfully applied in the literature.</p>
 <h2 id="bag-of-features">Bag of Features<a class="headerlink" href="#bag-of-features" title="Permanent link">&para;</a></h2>
@@ -374,10 +374,10 @@
 
 <p>The BoW process can be divided into three steps:</p>
 <ol>
-<li><strong>Feature extraction</strong> </li>
-</ol>
-<p>First, we extract the features (i.e. keypoints and descriptors) from all images in the training dataset <script type="math/tex">𝐷</script>. This can be done, for example, using SIFT. Let <script type="math/tex">𝐹=\{𝑓_1,…,𝑓_𝑀\}</script> be the set of descriptors extracted from all training images in <script type="math/tex">𝐷</script>. So, <script type="math/tex">𝑓_𝑖</script> may be a descriptor that belongs to any of the training examples (it is not stored to which one).</p>
-<ol start="2">
+<li>
+<p><strong>Feature extraction</strong> 
+   First, we extract the features (i.e. keypoints and descriptors) from all images in the training dataset <script type="math/tex">𝐷</script>. This can be done, for example, using SIFT. Let <script type="math/tex">𝐹=\{𝑓_1,…,𝑓_𝑀\}</script> be the set of descriptors extracted from all training images in <script type="math/tex">𝐷</script>. So, <script type="math/tex">𝑓_𝑖</script> may be a descriptor that belongs to any of the training examples (it is not stored to which one).</p>
+</li>
 <li>
 <p><strong>Codebook generation</strong>.
    In this step, we cluster all descriptors <script type="math/tex">𝐹=\{𝑓_1,…,𝑓_𝑀\}</script> into <script type="math/tex">𝑘</script> clusters using <script type="math/tex">k</script>-means (or another clustering algorithm. Therefore, we have <script type="math/tex">𝑘</script> clusters, each of them with a centroid <script type="math/tex">𝐶=\{𝑐_1,…,𝑐_𝑘\}</script>. These centroids represent the main features that are present in the whole training dataset <script type="math/tex">𝐷</script>. In this context, they are often known as codewords or visual words (hence the name bag-of-visual-words). The set of codewords <script type="math/tex">𝐶</script> is often called codebook or vocabulary.</p>
