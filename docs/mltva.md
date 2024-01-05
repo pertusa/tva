@@ -162,10 +162,8 @@ $$\sum_{\substack{x_0<x \leq x_1 \\ y_0<y \leq y_1}} I(x, y)=ii(D)+ii(A)-ii(B)-i
 Therefore, the calculation of the feature value for a black or white region is straighforward and very efficient, requiring only three sums. 
 
 <!--
-
-
 COJONUDO EJERCICIO: https://github.com/varunjain3/EigenFaces#1.-Viola-Jones-Face-Detection
---->
+-->
 
 **3. Adaptive Boosting (AdaBoost):**
 
