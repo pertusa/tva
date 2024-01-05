@@ -1,4 +1,4 @@
-site_name: Machine learning methods for computer vision
+site_name: TVA
 use_directory_urls: false
 
 nav:
@@ -33,6 +33,7 @@ extra:
 
 markdown_extensions:
     - admonition
+    - mdx_math
     - codehilite:
         linenums: true
     - footnotes
@@ -42,3 +43,7 @@ markdown_extensions:
        permalink: true
        toc_depth: 3
     - pymdownx.superfences
+
+extra_javascript:
+  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+ 

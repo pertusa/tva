@@ -10,9 +10,9 @@ The Bag of Features (BoF) method, also known as Bag of Words (BoW), can be used 
 
 This section explains the BOW method formally.
 
-Let's consider a training dataset $𝐷=\{𝑥_1,…,𝑥_𝑁\}$ of $𝑁$ training images. Note that an image $𝑥_𝑖\in 𝐷$ may contain a different number of features (keypoints and descriptors) than another image. One of the main problems of SIFT or SURF is that performing a similarity search between two images implies to match all points from image $x_i$ with the points of image $x_j$, which is a very costly procedure with a complexity $O(NM)$, being $N$ and $M$ the number of keypoints of $x_i$ and $x_j$, respectively. 
+Let's consider a training dataset \(𝐷=\{𝑥_1,…,𝑥_𝑁\}\) of \(𝑁\) training images. Note that an image \(𝑥_𝑖\in 𝐷\) may contain a different number of features (keypoints and descriptors) than another image. One of the main problems of SIFT or SURF is that performing a similarity search between two images implies to match all points from image \(x_i\) with the points of image \(x_j\), which is a very costly procedure with a complexity \(O(NM)\), being \(N\) and \(M\) the number of keypoints of \(x_i\) and \(x_j\), respectively. 
 
-BoW extracts a single feature vector of fixed-size $𝑘$ for any image independently of its number of keypoints. 
+BoW extracts a single feature vector of fixed-size \(𝑘\) for any image independently of its number of keypoints. 
 
 <!-- Explicación: https://ai.stackexchange.com/questions/21914/what-are-bag-of-features-in-computer-vision -->
 
@@ -23,19 +23,18 @@ The BoW process can be divided into three steps:
 
 1. **Feature extraction** 
 
-   First, we extract the features (i.e. keypoints and descriptors) from all images in the training dataset $𝐷$. This can be done, for example, using SIFT. Let $𝐹=\{𝑓_1,…,𝑓_𝑀\}$ be the set of descriptors extracted from all training images in $𝐷$. So, $𝑓_𝑖$ may be a descriptor that belongs to any of the training examples (it is not stored to which one).
+   First, we extract the features (i.e. keypoints and descriptors) from all images in the training dataset \(𝐷\). This can be done, for example, using SIFT. Let \(𝐹=\{𝑓_1,…,𝑓_𝑀\}\) be the set of descriptors extracted from all training images in \(𝐷\). So, \(𝑓_𝑖\) may be a descriptor that belongs to any of the training examples (it is not stored to which one).
 
-2. **Codebook generation**
-   In this step, we cluster all descriptors $𝐹=\{𝑓_1,…,𝑓_𝑀\}$ into $𝑘$ clusters using $k$-means (or another clustering algorithm. Therefore, we have $𝑘$ clusters, each of them with a centroid $𝐶=\{𝑐_1,…,𝑐_𝑘\}$. These centroids represent the main features that are present in the whole training dataset $𝐷$. In this context, they are often known as codewords or visual words (hence the name bag-of-visual-words). The set of codewords $𝐶$ is often called  codebook or vocabulary.
+2. **Codebook generation**.
+   In this step, we cluster all descriptors \(𝐹=\{𝑓_1,…,𝑓_𝑀\}\) into \(𝑘\) clusters using \(k\)-means (or another clustering algorithm. Therefore, we have \(𝑘\) clusters, each of them with a centroid \(𝐶=\{𝑐_1,…,𝑐_𝑘\}\). These centroids represent the main features that are present in the whole training dataset \(𝐷\). In this context, they are often known as codewords or visual words (hence the name bag-of-visual-words). The set of codewords \(𝐶\) is often called codebook or vocabulary.
 
-3. **Feature vector generation**
+3. **Feature vector generation**.
+   In this last step, given a new image \(𝑢∉𝐷\), we  represent \(𝑢\) as a \(𝑘\)-dimensional vector (where \(𝑘\) is the number of codewords). To do that, we need to follow the following steps: 
+   1) Extract the raw features from \(𝑢\) with e.g. SIFT (as we did for the training images). Let the descriptors of \(𝑢\) be \(𝑈=\{𝑢_1,…,𝑢_{|𝑈|}\}\). 
+   2) Create a vector \(𝐼\) of size \(𝑘\) filled with zeros, where the \(𝑖\)th element of \(𝐼\) corresponds to the \(𝑖\)th codeword (or cluster).
+   3) For each descriptor \(𝑢_𝑖\), find the closest codeword (or centroid) in \(𝐶\). Once found, increment the value at the \(𝑗\)th position of \(𝐼\) (i.e., initially, from zero to one), where \(𝑗\) is the closest codeword to the descriptor \(𝑢_𝑖\) of the query image. The distance between \(𝑢_𝑖\) and any of the codewords can be computed with the Euclidean distance, for example. 
 
-   In this last step, given a new image $𝑢∉𝐷$, we  represent $𝑢$ as a $𝑘$-dimensional vector (where $𝑘$ is the number of codewords). To do that, we need to follow the following steps: 
-   1) Extract the raw features from $𝑢$ with e.g. SIFT (as we did for the training images). Let the descriptors of $𝑢$ be $𝑈=\{𝑢_1,…,𝑢_{|𝑈|}\}$. 
-   2) Create a vector $𝐼$ of size $𝑘$ filled with zeros, where the $𝑖$th element of $𝐼$ corresponds to the $𝑖$th codeword (or cluster).
-   3) For each descriptor $𝑢_𝑖$, find the closest codeword (or centroid) in $𝐶$. Once found, increment the value at the $𝑗$th position of $𝐼$ (i.e., initially, from zero to one), where $𝑗$ is the closest codeword to the descriptor $𝑢_𝑖$ of the query image. The distance between $𝑢_𝑖$ and any of the codewords can be computed with the Euclidean distance, for example. 
-
-At the end of this process, we obtain a feature vector $𝐼$ of size $k$ that represents a **histogram of codewords** for the query image. Here is an illustrative example of such a histogram:
+At the end of this process, we obtain a feature vector \(𝐼\) of size \(k\) that represents a **histogram of codewords** for the query image. Here is an illustrative example of such a histogram:
 
 ![BOW](images/bow.jpg)
 
@@ -112,7 +111,7 @@ The full paper is [in this link](https://www.cs.cmu.edu/~efros/courses/LBMV07/Pa
    The algorithm uses Haar-like features, which are simple rectangular patterns. These features are used to capture the presence of oriented contrasts between different regions of an image. For example, a feature might focus on the intensity difference between the eye region and the cheek region in a face. 
    
 2. **Integral image**
-   The Haar features are efficiently calculated using the integral image. This is a representation of an image that allows for the rapid calculation of the sum of pixel values in any rectangular area. In this representation, each point $(x, y)$ in the integral image contains the sum of the pixel values above and to the left of $(x, y)$, inclusive.
+   The Haar features are efficiently calculated using the integral image. This is a representation of an image that allows for the rapid calculation of the sum of pixel values in any rectangular area. In this representation, each point \((x, y)\) in the integral image contains the sum of the pixel values above and to the left of \((x, y)\), inclusive.
 
 3. **Adaptive Boosting (AdaBoost):**
    AdaBoost is a supervised machine learning method based on boosting. In the context of the Viola-Jones algorithm, it is used to select a small number of important features from a larger set, and also to train classifiers that use these features. 
@@ -133,7 +132,7 @@ The Viola-Jones algorithm uses a set of features similar to Haar wavelets, which
 
 ![Haar features](images/haar.png)
 
-In these boxes, white represents $1$, and black is $-1$. Therefore, when convolving a feature with a part of the image, the sum of the pixels which lie within the white rectangles are subtracted from the sum of pixels in the black rectangles.
+In these boxes, white represents 1, and black is -1. Therefore, when convolving a feature with a part of the image, the sum of the pixels which lie within the white rectangles are subtracted from the sum of pixels in the black rectangles.
 
 Tthe feature value will be around zero for “flat regions”, i.e., where all the pixels have the same value. A large feature value will be obtained in the regions where the pixels in the black and white rectangles are very different.
 
@@ -146,23 +145,23 @@ As shown below, the following features have great importance in face detection s
 
 The Haar features could be computed on an image using convolutions, but since they are  "flat" (black or white), they can also be efficiently calculated using the integral image. Hence, the Haar-like features can be computed very quickly using the integral image representation.
 
-The integral image is calculated as follows. Given a grayscale image $I$, the integral image value $ii(x, y)$ at the point $(x, y)$ is the sum of all the pixels above and to the left of $(x, y)$, inclusive:
+The integral image is calculated as follows. Given a grayscale image \(I\), the integral image value \(ii(x, y)\) at the point \((x, y)\) is the sum of all the pixels above and to the left of \((x, y)\), inclusive:
 
-$ii(x, y)=\sum_{\substack{x^{\prime} \leq x \\ y^{\prime} \leq y}} I\left(x^{\prime}, y^{\prime}\right)$
+$$ii(x, y)=\sum_{\substack{x^{\prime} \leq x \\ y^{\prime} \leq y}} I\left(x^{\prime}, y^{\prime}\right)$$
 
-The integral image can be computed in a single pass over the image $I$ with the following equation:
+The integral image can be computed in a single pass over the image \(I\) with the following equation:
 
-$ii(x, y)=I(x, y)+ii(x, y-1)+ii(x-1, y)-ii(x-1, y-1)$
+$$ii(x, y)=I(x, y)+ii(x, y-1)+ii(x-1, y)-ii(x-1, y-1)$$
 
-Therefore, given an image with $N$ pixels, the time complexity of the integral image computation is $O(N)$.
+Therefore, given an image with \(N\) pixels, the time complexity of the integral image computation is \(O(N)\).
 
 The sum in any rectangular area requires four values of the integral image, regardless of the window size:
 
 ![Integral image. Source: https://www.baeldung.com/cs/viola-jones-algorithm#:~:text=Viola%2DJones%20algorithm%20is%20a,primarily%20conceived%20for%20face%20detection.](images/fig3.jpeg)
 
-More specifically, the sum of pixel values within any rectangle $ABCD$ of a Haar-like feature can be computed as:
+More specifically, the sum of pixel values within any rectangle \(ABCD\) of a Haar-like feature can be computed as:
 
-$\sum_{\substack{x_0<x \leq x_1 \\ y_0<y \leq y_1}} I(x, y)=ii(D)+ii(A)-ii(B)-ii(C)$
+$$\sum_{\substack{x_0<x \leq x_1 \\ y_0<y \leq y_1}} I(x, y)=ii(D)+ii(A)-ii(B)-ii(C)$$
 
 Therefore, the calculation of the feature value for a black or white region is straighforward and very efficient, requiring only three sums. 
 
@@ -202,7 +201,7 @@ In the context of Viola-Jones method, AdaBoost is used to select a small number 
 
 Feature selection is achieved through a simple modification of AdaBoost: The weak learner is constrained so that each weak classifier returned depends only of a single feature. As a result, each stage of the boosting process  (which selects a new weak classifier) can be seen as a feature selection process. 
 
-Viola-Jones selected the best 6000 features using feature selection, although with the best 200 features the method already achieved an accuracy of 95\%.
+Viola-Jones selected the best 6000 features using feature selection, although with the best 200 features the method already achieved an accuracy of 95%.
 
 The best two features chosen are shown in the previous figure (see 1. Haar features). They are focused on the detection of the eyes and the nose.
 
@@ -229,17 +228,11 @@ Eigenfaces is a remarkable face recognition technique that has been widely used 
 
 [Eigenfaces](https://sites.cs.ucsb.edu/~mturk/Papers/mturk-CVPR91.pdf) is a method used in computer vision and face recognition that involves a mathematical approach to process human faces. The concept can be broken down into several key points:
 
-1. **Principal Component Analysis (PCA)** 
+1. **Principal Component Analysis (PCA)**. The core of eigenfaces is Principal Component Analysis, a statistical method used to reduce the dimensionality of large datasets while preserving most of the variance in the data. PCA identifies the directions (principal components) in which the data varies the most.
 
-   The core of eigenfaces is Principal Component Analysis, a statistical method used to reduce the dimensionality of large datasets while preserving most of the variance in the data. PCA identifies the directions (principal components) in which the data varies the most.
+2. **Application to faces**. In the context of face recognition, each face image is converted into a vector of pixel values. These vectors form a high-dimensional dataset. PCA is applied to this dataset to identify the principal components. These components are essentially the 'eigenfaces', which are a set of standardised face images. Eigenfaces serve as a basis set for representing faces. Any face can be approximated by a combination of these eigenfaces, so each face in the dataset can be represented as a weighted sum of eigenfaces. The weights indicate how much each eigenface contributes to the particular face image.
 
-2. **Application to faces**
-
-   In the context of face recognition, each face image is converted into a vector of pixel values. These vectors form a high-dimensional dataset. PCA is applied to this dataset to identify the principal components. These components are essentially the 'eigenfaces', which are a set of standardised face images. Eigenfaces serve as a basis set for representing faces. Any face can be approximated by a combination of these eigenfaces, so each face in the dataset can be represented as a weighted sum of eigenfaces. The weights indicate how much each eigenface contributes to the particular face image.
-
-3. **Face Recognition**
-
-   During training, a dataset of faces is used to compute the eigenfaces and the weights for each known face. For recognition, the same process is applied to a new face image to obtain its weights. The new face is then compared to the known faces by measuring the similarity in their weights.
+3. **Face Recognition**. During training, a dataset of faces is used to compute the eigenfaces and the weights for each known face. For recognition, the same process is applied to a new face image to obtain its weights. The new face is then compared to the known faces by measuring the similarity in their weights.
 
 Here you can see some examples of eigenfaces:
 
