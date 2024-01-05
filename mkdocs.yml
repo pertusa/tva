@@ -1,0 +1,44 @@
+site_name: Machine learning methods for computer vision
+use_directory_urls: false
+
+nav:
+- Machine learning methods for computer vision : 'mltva.md'
+
+theme:
+    language: en
+    name: 'material'
+    palette:
+        primary: 'Teal'
+        accent: 'Teal'
+    font:
+        text: 'Roboto'
+        code: 'Roboto Mono'
+    features:
+        - content.code.copy
+#    logo: 'imagenes/logo.png'
+
+# Ponemos como idioma de búsqueda el inglés
+# para conseguir que busque correctamente
+# todas las palabras en castellano, sin eliminar
+# los excesivos derivados que se definen en 
+# https://github.com/MihaiValentin/lunr-languages/blob/master/lunr.es.js
+
+extra:
+    search:
+        language: 'en'
+        
+# Problema: pdf-export solo admite que las imagenes de la pagina sean pdf o svg, no otros formatos
+#plugins:
+#    - pdf-export
+
+markdown_extensions:
+    - admonition
+    - codehilite:
+        linenums: true
+    - footnotes
+    - meta
+    - sane_lists
+    - toc:
+       permalink: true
+       toc_depth: 3
+    - pymdownx.superfences
