@@ -366,11 +366,11 @@
 <p>First, we extract the features (i.e. keypoints and descriptors) from all images in the training dataset <script type="math/tex">𝐷</script>. This can be done, for example, using SIFT. Let <script type="math/tex">𝐹=\{𝑓_1,…,𝑓_𝑀\}</script> be the set of descriptors extracted from all training images in <script type="math/tex">𝐷</script>. So, <script type="math/tex">𝑓_𝑖</script> may be a descriptor that belongs to any of the training examples (it is not stored to which one).</p>
 <ol start="2">
 <li>
-<p><strong>Codebook generation</strong>
+<p><strong>Codebook generation</strong>.
    In this step, we cluster all descriptors <script type="math/tex">𝐹=\{𝑓_1,…,𝑓_𝑀\}</script> into <script type="math/tex">𝑘</script> clusters using <script type="math/tex">k</script>-means (or another clustering algorithm. Therefore, we have <script type="math/tex">𝑘</script> clusters, each of them with a centroid <script type="math/tex">𝐶=\{𝑐_1,…,𝑐_𝑘\}</script>. These centroids represent the main features that are present in the whole training dataset <script type="math/tex">𝐷</script>. In this context, they are often known as codewords or visual words (hence the name bag-of-visual-words). The set of codewords <script type="math/tex">𝐶</script> is often called codebook or vocabulary.</p>
 </li>
 <li>
-<p><strong>Feature vector generation</strong>
+<p><strong>Feature vector generation</strong>.
    In this last step, given a new image <script type="math/tex">𝑢∉𝐷</script>, we  represent <script type="math/tex">𝑢</script> as a <script type="math/tex">𝑘</script>-dimensional vector (where <script type="math/tex">𝑘</script> is the number of codewords). To do that, we need to follow the following steps: 
    1) Extract the raw features from <script type="math/tex">𝑢</script> with e.g. SIFT (as we did for the training images). Let the descriptors of <script type="math/tex">𝑢</script> be <script type="math/tex">𝑈=\{𝑢_1,…,𝑢_{|𝑈|}\}</script>. 
    2) Create a vector <script type="math/tex">𝐼</script> of size <script type="math/tex">𝑘</script> filled with zeros, where the <script type="math/tex">𝑖</script>th element of <script type="math/tex">𝐼</script> corresponds to the <script type="math/tex">𝑖</script>th codeword (or cluster).
@@ -511,7 +511,7 @@ https://www.youtube.com/watch?v=O7J9Dl1cWmM
 <p>At the end, a strong classifier is built with the weighted combination of individual models.</p>
 <p>In the context of Viola-Jones method, AdaBoost is used to select a small number of relevant visual features. Within any image sub-window, the total number of Harr-like features is very large (far larger than the number of pixels). In order to ensure fast classification, the learning process must exclude a large majority of the available features, and focus on a small set of critical features. </p>
 <p>Feature selection is achieved through a simple modification of AdaBoost: The weak learner is constrained so that each weak classifier returned depends only of a single feature. As a result, each stage of the boosting process  (which selects a new weak classifier) can be seen as a feature selection process. </p>
-<p>Viola-Jones selected the best 6000 features using feature selection, although with the best 200 features the method already achieved an accuracy of 95\%.</p>
+<p>Viola-Jones selected the best 6000 features using feature selection, although with the best 200 features the method already achieved an accuracy of 95%.</p>
 <p>The best two features chosen are shown in the previous figure (see 1. Haar features). They are focused on the detection of the eyes and the nose.</p>
 <p><strong>4. Classifier Cascades</strong></p>
 <p>The Viola-Jones method uses sliding windows on the image (originally of size 24x24) and, for each window, 6000 features are selected to detect if there is a face on a given region. </p>
@@ -525,17 +525,16 @@ https://www.youtube.com/watch?v=O7J9Dl1cWmM
 <h2 id="eigenfaces">Eigenfaces<a class="headerlink" href="#eigenfaces" title="Permanent link">&para;</a></h2>
 <p><a href="https://sites.cs.ucsb.edu/~mturk/Papers/mturk-CVPR91.pdf">Eigenfaces</a> is a method used in computer vision and face recognition that involves a mathematical approach to process human faces. The concept can be broken down into several key points:</p>
 <ol>
-<li><strong>Principal Component Analysis (PCA)</strong> </li>
+<li>
+<p><strong>Principal Component Analysis (PCA)</strong>. The core of eigenfaces is Principal Component Analysis, a statistical method used to reduce the dimensionality of large datasets while preserving most of the variance in the data. PCA identifies the directions (principal components) in which the data varies the most.</p>
+</li>
+<li>
+<p><strong>Application to faces</strong>. In the context of face recognition, each face image is converted into a vector of pixel values. These vectors form a high-dimensional dataset. PCA is applied to this dataset to identify the principal components. These components are essentially the 'eigenfaces', which are a set of standardised face images. Eigenfaces serve as a basis set for representing faces. Any face can be approximated by a combination of these eigenfaces, so each face in the dataset can be represented as a weighted sum of eigenfaces. The weights indicate how much each eigenface contributes to the particular face image.</p>
+</li>
+<li>
+<p><strong>Face Recognition</strong>. During training, a dataset of faces is used to compute the eigenfaces and the weights for each known face. For recognition, the same process is applied to a new face image to obtain its weights. The new face is then compared to the known faces by measuring the similarity in their weights.</p>
+</li>
 </ol>
-<p>The core of eigenfaces is Principal Component Analysis, a statistical method used to reduce the dimensionality of large datasets while preserving most of the variance in the data. PCA identifies the directions (principal components) in which the data varies the most.</p>
-<ol start="2">
-<li><strong>Application to faces</strong></li>
-</ol>
-<p>In the context of face recognition, each face image is converted into a vector of pixel values. These vectors form a high-dimensional dataset. PCA is applied to this dataset to identify the principal components. These components are essentially the 'eigenfaces', which are a set of standardised face images. Eigenfaces serve as a basis set for representing faces. Any face can be approximated by a combination of these eigenfaces, so each face in the dataset can be represented as a weighted sum of eigenfaces. The weights indicate how much each eigenface contributes to the particular face image.</p>
-<ol start="3">
-<li><strong>Face Recognition</strong></li>
-</ol>
-<p>During training, a dataset of faces is used to compute the eigenfaces and the weights for each known face. For recognition, the same process is applied to a new face image to obtain its weights. The new face is then compared to the known faces by measuring the similarity in their weights.</p>
 <p>Here you can see some examples of eigenfaces:</p>
 <p><img alt="Eigenfaces. Source: https://en.wikipedia.org/wiki/Eigenface" src="images/Eigenfaces.png" /></p>
 <p>Any human face can be considered to be a combination of these standard eigenfaces. For example, one's face might be composed of the average face plus 10% from eigenface 1, 55% from eigenface 2, and even −3% from eigenface 3. Remarkably, it does not take many eigenfaces combined together to achieve a fair approximation of most faces. </p>
