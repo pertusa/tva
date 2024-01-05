@@ -1,4 +1,4 @@
-# Machine Learning methods applied to Computer Vision
+# Machine Learning methods for Computer Vision
 
 As we have seen, before the deep learning era most computer vision methods used handcrafted features. The difficulty in selecting the most suitable features for a vision task has hindered the reliability of such methods for image detection, classification, and segmentation.
 
@@ -16,13 +16,9 @@ BoW extracts a single feature vector of fixed-size \(𝑘\) for any image indepe
 
 <!-- Explicación: https://ai.stackexchange.com/questions/21914/what-are-bag-of-features-in-computer-vision -->
 
-
-### Steps
-
 The BoW process can be divided into three steps:
 
 1. **Feature extraction** 
-
    First, we extract the features (i.e. keypoints and descriptors) from all images in the training dataset \(𝐷\). This can be done, for example, using SIFT. Let \(𝐹=\{𝑓_1,…,𝑓_𝑀\}\) be the set of descriptors extracted from all training images in \(𝐷\). So, \(𝑓_𝑖\) may be a descriptor that belongs to any of the training examples (it is not stored to which one).
 
 2. **Codebook generation**.
@@ -217,14 +213,13 @@ For this, Viola-Jones used a cascade of classifiers, also trained with AdaBoost.
 
 The 6000 features were separated into 38 stages with 1, 10, 25, 25 and 50 features in the first five stages, placing the best features first.
 
-
-# Face recognition
+## Face recognition
 
 A facial recognition system aims to match a given human face against a dataset of faces. Such a system is typically employed to authenticate users through identity verification services, and typically works by pinpointing and measuring facial features from a given image.
 
 Eigenfaces is a remarkable face recognition technique that has been widely used on devices before the deep learning era. We are going to describe it next. 
 
-## Eigenfaces
+### Eigenfaces
 
 [Eigenfaces](https://sites.cs.ucsb.edu/~mturk/Papers/mturk-CVPR91.pdf) is a method used in computer vision and face recognition that involves a mathematical approach to process human faces. The concept can be broken down into several key points:
 
