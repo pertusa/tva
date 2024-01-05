@@ -354,8 +354,8 @@
 <h2 id="bag-of-features">Bag of Features<a class="headerlink" href="#bag-of-features" title="Permanent link">&para;</a></h2>
 <p>The Bag of Features (BoF) method, also known as Bag of Words (BoW), can be used to reduce the dimensionality of local descriptors.  BoW is a method to represent image features, and it is inspired by the bag-of-words model often used in the context of Natural Language Processing, hence the name. </p>
 <p>This section explains the BOW method formally.</p>
-<p>Let's consider a training dataset <script type="math/tex">𝐷=\{𝑥_1,…,𝑥_𝑁\}</script> of <script type="math/tex">𝑁</script> training images. Note that an image <script type="math/tex">𝑥_𝑖\in 𝐷</script> may contain a different number of features (keypoints and descriptors) than another image. One of the main problems of SIFT or SURF is that performing a similarity search between two images implies to match all points from image $x_i$ with the points of image <script type="math/tex">x_j</script>, which is a very costly procedure with a complexity <script type="math/tex">O(NM)</script>, being <script type="math/tex">N</script> and <script type="math/tex">M</script> the number of keypoints of <script type="math/tex">x_i</script> and <script type="math/tex">x_j</script>, respectively. </p>
-<p>BoW extracts a single feature vector of fixed-size $𝑘$ for any image independently of its number of keypoints. </p>
+<p>Let's consider a training dataset <script type="math/tex">𝐷=\{𝑥_1,…,𝑥_𝑁\}</script> of <script type="math/tex">𝑁</script> training images. Note that an image <script type="math/tex">𝑥_𝑖\in 𝐷</script> may contain a different number of features (keypoints and descriptors) than another image. One of the main problems of SIFT or SURF is that performing a similarity search between two images implies to match all points from image <script type="math/tex">x_i</script> with the points of image <script type="math/tex">x_j</script>, which is a very costly procedure with a complexity <script type="math/tex">O(NM)</script>, being <script type="math/tex">N</script> and <script type="math/tex">M</script> the number of keypoints of <script type="math/tex">x_i</script> and <script type="math/tex">x_j</script>, respectively. </p>
+<p>BoW extracts a single feature vector of fixed-size <script type="math/tex">𝑘</script> for any image independently of its number of keypoints. </p>
 <!-- Explicación: https://ai.stackexchange.com/questions/21914/what-are-bag-of-features-in-computer-vision -->
 
 <h3 id="steps">Steps<a class="headerlink" href="#steps" title="Permanent link">&para;</a></h3>
@@ -370,14 +370,14 @@
    In this step, we cluster all descriptors <script type="math/tex">𝐹=\{𝑓_1,…,𝑓_𝑀\}</script> into <script type="math/tex">𝑘</script> clusters using <script type="math/tex">k</script>-means (or another clustering algorithm. Therefore, we have <script type="math/tex">𝑘</script> clusters, each of them with a centroid <script type="math/tex">𝐶=\{𝑐_1,…,𝑐_𝑘\}</script>. These centroids represent the main features that are present in the whole training dataset <script type="math/tex">𝐷</script>. In this context, they are often known as codewords or visual words (hence the name bag-of-visual-words). The set of codewords <script type="math/tex">𝐶</script> is often called codebook or vocabulary.</p>
 </li>
 <li>
-<p><strong>Feature vector generation</strong></p>
-</li>
-</ol>
-<p>In this last step, given a new image <script type="math/tex">𝑢∉𝐷</script>, we  represent <script type="math/tex">𝑢</script> as a <script type="math/tex">𝑘</script>-dimensional vector (where <script type="math/tex">𝑘</script> is the number of codewords). To do that, we need to follow the following steps: 
+<p><strong>Feature vector generation</strong>
+   In this last step, given a new image <script type="math/tex">𝑢∉𝐷</script>, we  represent <script type="math/tex">𝑢</script> as a <script type="math/tex">𝑘</script>-dimensional vector (where <script type="math/tex">𝑘</script> is the number of codewords). To do that, we need to follow the following steps: 
    1) Extract the raw features from <script type="math/tex">𝑢</script> with e.g. SIFT (as we did for the training images). Let the descriptors of <script type="math/tex">𝑢</script> be <script type="math/tex">𝑈=\{𝑢_1,…,𝑢_{|𝑈|}\}</script>. 
    2) Create a vector <script type="math/tex">𝐼</script> of size <script type="math/tex">𝑘</script> filled with zeros, where the <script type="math/tex">𝑖</script>th element of <script type="math/tex">𝐼</script> corresponds to the <script type="math/tex">𝑖</script>th codeword (or cluster).
    3) For each descriptor <script type="math/tex">𝑢_𝑖</script>, find the closest codeword (or centroid) in <script type="math/tex">𝐶</script>. Once found, increment the value at the <script type="math/tex">𝑗</script>th position of <script type="math/tex">𝐼</script> (i.e., initially, from zero to one), where <script type="math/tex">𝑗</script> is the closest codeword to the descriptor <script type="math/tex">𝑢_𝑖</script> of the query image. The distance between <script type="math/tex">𝑢_𝑖</script> and any of the codewords can be computed with the Euclidean distance, for example. </p>
-<p>At the end of this process, we obtain a feature vector $𝐼$ of size $k$ that represents a <strong>histogram of codewords</strong> for the query image. Here is an illustrative example of such a histogram:</p>
+</li>
+</ol>
+<p>At the end of this process, we obtain a feature vector <script type="math/tex">𝐼</script> of size <script type="math/tex">k</script> that represents a <strong>histogram of codewords</strong> for the query image. Here is an illustrative example of such a histogram:</p>
 <p><img alt="BOW" src="images/bow.jpg" /></p>
 <p>As can be seen, an image can be represented by a histogram of codewords. In this example, for the sake of clarity there are only 4 codewords.</p>
 <p>Alternatively, rather than the codeword frequency, we can use the tf-idf. In that case, instead representing each image with a vector that contains the frequency of the codewords, it is represented with the frequency of the codewords weighted by their presence in other images. </p>
@@ -444,7 +444,7 @@ https://www.cs.ubc.ca/~lowe/425/slides/13-ViolaJones.pdf
 </li>
 <li>
 <p><strong>Integral image</strong>
-   The Haar features are efficiently calculated using the integral image. This is a representation of an image that allows for the rapid calculation of the sum of pixel values in any rectangular area. In this representation, each point $(x, y)$ in the integral image contains the sum of the pixel values above and to the left of $(x, y)$, inclusive.</p>
+   The Haar features are efficiently calculated using the integral image. This is a representation of an image that allows for the rapid calculation of the sum of pixel values in any rectangular area. In this representation, each point <script type="math/tex">(x, y)</script> in the integral image contains the sum of the pixel values above and to the left of <script type="math/tex">(x, y)</script>, inclusive.</p>
 </li>
 <li>
 <p><strong>Adaptive Boosting (AdaBoost):</strong>
@@ -464,21 +464,27 @@ https://www.cs.ubc.ca/~lowe/425/slides/13-ViolaJones.pdf
 <p><strong>1. Haar features</strong></p>
 <p>The Viola-Jones algorithm uses a set of features similar to Haar wavelets, which are a set of square-shaped functions. More specifically, the algorithm uses three types of Haar-like features represented in the following figure:</p>
 <p><img alt="Haar features" src="images/haar.png" /></p>
-<p>In these boxes, white represents $1$, and black is $-1$. Therefore, when convolving a feature with a part of the image, the sum of the pixels which lie within the white rectangles are subtracted from the sum of pixels in the black rectangles.</p>
+<p>In these boxes, white represents 1, and black is -1. Therefore, when convolving a feature with a part of the image, the sum of the pixels which lie within the white rectangles are subtracted from the sum of pixels in the black rectangles.</p>
 <p>Tthe feature value will be around zero for “flat regions”, i.e., where all the pixels have the same value. A large feature value will be obtained in the regions where the pixels in the black and white rectangles are very different.</p>
 <p>As shown below, the following features have great importance in face detection since the eye region is darker than the cheeks, and also darker than the nose region. </p>
 <p><img alt="Haar features. Source: https://www.baeldung.com/cs/viola-jones-algorithm#:~:text=Viola%2DJones%20algorithm%20is%20a,primarily%20conceived%20for%20face%20detection." src="images/fig2.jpeg" /></p>
 <p><strong>2. Integral image</strong></p>
 <p>The Haar features could be computed on an image using convolutions, but since they are  "flat" (black or white), they can also be efficiently calculated using the integral image. Hence, the Haar-like features can be computed very quickly using the integral image representation.</p>
-<p>The integral image is calculated as follows. Given a grayscale image $I$, the integral image value $ii(x, y)$ at the point $(x, y)$ is the sum of all the pixels above and to the left of $(x, y)$, inclusive:</p>
-<p>$ii(x, y)=\sum_{\substack{x^{\prime} \leq x \ y^{\prime} \leq y}} I\left(x^{\prime}, y^{\prime}\right)$</p>
-<p>The integral image can be computed in a single pass over the image $I$ with the following equation:</p>
-<p>$ii(x, y)=I(x, y)+ii(x, y-1)+ii(x-1, y)-ii(x-1, y-1)$</p>
-<p>Therefore, given an image with $N$ pixels, the time complexity of the integral image computation is $O(N)$.</p>
+<p>The integral image is calculated as follows. Given a grayscale image <script type="math/tex">I</script>, the integral image value <script type="math/tex">ii(x, y)</script> at the point <script type="math/tex">(x, y)</script> is the sum of all the pixels above and to the left of <script type="math/tex">(x, y)</script>, inclusive:</p>
+<p>
+<script type="math/tex; mode=display">ii(x, y)=\sum_{\substack{x^{\prime} \leq x \\ y^{\prime} \leq y}} I\left(x^{\prime}, y^{\prime}\right)</script>
+</p>
+<p>The integral image can be computed in a single pass over the image <script type="math/tex">I</script> with the following equation:</p>
+<p>
+<script type="math/tex; mode=display">ii(x, y)=I(x, y)+ii(x, y-1)+ii(x-1, y)-ii(x-1, y-1)</script>
+</p>
+<p>Therefore, given an image with <script type="math/tex">N</script> pixels, the time complexity of the integral image computation is <script type="math/tex">O(N)</script>.</p>
 <p>The sum in any rectangular area requires four values of the integral image, regardless of the window size:</p>
 <p><img alt="Integral image. Source: https://www.baeldung.com/cs/viola-jones-algorithm#:~:text=Viola%2DJones%20algorithm%20is%20a,primarily%20conceived%20for%20face%20detection." src="images/fig3.jpeg" /></p>
-<p>More specifically, the sum of pixel values within any rectangle $ABCD$ of a Haar-like feature can be computed as:</p>
-<p>$\sum_{\substack{x_0&lt;x \leq x_1 \ y_0&lt;y \leq y_1}} I(x, y)=ii(D)+ii(A)-ii(B)-ii(C)$</p>
+<p>More specifically, the sum of pixel values within any rectangle <script type="math/tex">ABCD</script> of a Haar-like feature can be computed as:</p>
+<p>
+<script type="math/tex; mode=display">\sum_{\substack{x_0<x \leq x_1 \\ y_0<y \leq y_1}} I(x, y)=ii(D)+ii(A)-ii(B)-ii(C)</script>
+</p>
 <p>Therefore, the calculation of the feature value for a black or white region is straighforward and very efficient, requiring only three sums. </p>
 <p>&lt;!--</p>
 <p>COJONUDO EJERCICIO: https://github.com/varunjain3/EigenFaces#1.-Viola-Jones-Face-Detection
