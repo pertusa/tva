@@ -246,6 +246,26 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#face-recognition" class="md-nav__link">
+    Face recognition
+  </a>
+  
+    <nav class="md-nav" aria-label="Face recognition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#eigenfaces" class="md-nav__link">
+    Eigenfaces
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -298,6 +318,26 @@
           <li class="md-nav__item">
   <a href="#viola-jones" class="md-nav__link">
     Viola-Jones
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#face-recognition" class="md-nav__link">
+    Face recognition
+  </a>
+  
+    <nav class="md-nav" aria-label="Face recognition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#eigenfaces" class="md-nav__link">
+    Eigenfaces
   </a>
   
 </li>
@@ -492,10 +532,10 @@ https://www.youtube.com/watch?v=O7J9Dl1cWmM
 <p>For this, Viola-Jones used a cascade of classifiers, also trained with AdaBoost. Instead of applying the 6000 features per window, the features were placed in different stages in a hierarchical manner (each with its own classifier). If in the first stage, the window returns that there is no face, it is discarded and the following ones are not considered. If it passes, the second phase is applied, and so on until the end is reached (if it passes all of them, then it is a face).</p>
 <p><img alt="Cascade of classifiers. Source: Viola-Jones paper" src="images/cascadehaar.jpg" /></p>
 <p>The 6000 features were separated into 38 stages with 1, 10, 25, 25 and 50 features in the first five stages, placing the best features first.</p>
-<h1 id="face-recognition">Face recognition<a class="headerlink" href="#face-recognition" title="Permanent link">&para;</a></h1>
+<h2 id="face-recognition">Face recognition<a class="headerlink" href="#face-recognition" title="Permanent link">&para;</a></h2>
 <p>A facial recognition system aims to match a given human face against a dataset of faces. Such a system is typically employed to authenticate users through identity verification services, and typically works by pinpointing and measuring facial features from a given image.</p>
 <p>Eigenfaces is a remarkable face recognition technique that has been widely used on devices before the deep learning era. We are going to describe it next. </p>
-<h2 id="eigenfaces">Eigenfaces<a class="headerlink" href="#eigenfaces" title="Permanent link">&para;</a></h2>
+<h3 id="eigenfaces">Eigenfaces<a class="headerlink" href="#eigenfaces" title="Permanent link">&para;</a></h3>
 <p><a href="https://sites.cs.ucsb.edu/~mturk/Papers/mturk-CVPR91.pdf">Eigenfaces</a> is a method used in computer vision and face recognition that involves a mathematical approach to process human faces. The concept can be broken down into several key points:</p>
 <ol>
 <li>
