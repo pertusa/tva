@@ -1,0 +1,596 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.1.21">
+    
+    
+      
+        <title>Machine learning methods for computer vision - Machine learning methods for computer vision</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.eebd395e.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ecc896b0.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="Teal" data-md-color-accent="Teal">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#machine-learning-methods-applied-to-computer-vision" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="Machine learning methods for computer vision" class="md-header__button md-logo" aria-label="Machine learning methods for computer vision" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Machine learning methods for computer vision
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Machine learning methods for computer vision
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="Machine learning methods for computer vision" class="md-nav__button md-logo" aria-label="Machine learning methods for computer vision" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Machine learning methods for computer vision
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Machine learning methods for computer vision
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="mltva.html" class="md-nav__link md-nav__link--active">
+        Machine learning methods for computer vision
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#bag-of-features" class="md-nav__link">
+    Bag of Features
+  </a>
+  
+    <nav class="md-nav" aria-label="Bag of Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#steps" class="md-nav__link">
+    Steps
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#face-detection" class="md-nav__link">
+    Face detection
+  </a>
+  
+    <nav class="md-nav" aria-label="Face detection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#viola-jones" class="md-nav__link">
+    Viola-Jones
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#bag-of-features" class="md-nav__link">
+    Bag of Features
+  </a>
+  
+    <nav class="md-nav" aria-label="Bag of Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#steps" class="md-nav__link">
+    Steps
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#face-detection" class="md-nav__link">
+    Face detection
+  </a>
+  
+    <nav class="md-nav" aria-label="Face detection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#viola-jones" class="md-nav__link">
+    Viola-Jones
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="machine-learning-methods-applied-to-computer-vision">Machine Learning methods applied to Computer Vision<a class="headerlink" href="#machine-learning-methods-applied-to-computer-vision" title="Permanent link">&para;</a></h1>
+<p>As we have seen, before the deep learning era most computer vision methods used handcrafted features. The difficulty in selecting the most suitable features for a vision task has hindered the reliability of such methods for image detection, classification, and segmentation.</p>
+<p>Nonetheless, some traditional machine learning methods have been successfully applied to computer vision. In this unit, we will see some of them, including dimensionality reduction (particularly, Bag of Words applied to local descriptors), and face detection and recognition (Viola-Jones and EigenFaces) that have been successfully applied in the literature.</p>
+<h2 id="bag-of-features">Bag of Features<a class="headerlink" href="#bag-of-features" title="Permanent link">&para;</a></h2>
+<p>The Bag of Features (BoF) method, also known as Bag of Words (BoW), can be used to reduce the dimensionality of local descriptors.  BoW is a method to represent image features, and it is inspired by the bag-of-words model often used in the context of Natural Language Processing, hence the name. </p>
+<p>This section explains the BOW method formally.</p>
+<p>Let's consider a training dataset $𝐷={𝑥_1,…,𝑥_𝑁}$ of $𝑁$ training images. Note that an image $𝑥_𝑖\in 𝐷$ may contain a different number of features (keypoints and descriptors) than another image. One of the main problems of SIFT or SURF is that performing a similarity search between two images implies to match all points from image $x_i$ with the points of image $x_j$, which is a very costly procedure with a complexity $O(NM)$, being $N$ and $M$ the number of keypoints of $x_i$ and $x_j$, respectively. </p>
+<p>BoW extracts a single feature vector of fixed-size $𝑘$ for any image independently of its number of keypoints. </p>
+<!-- Explicación: https://ai.stackexchange.com/questions/21914/what-are-bag-of-features-in-computer-vision -->
+
+<h3 id="steps">Steps<a class="headerlink" href="#steps" title="Permanent link">&para;</a></h3>
+<p>The BoW process can be divided into three steps:</p>
+<ol>
+<li><strong>Feature extraction</strong> </li>
+</ol>
+<p>First, we extract the features (i.e. keypoints and descriptors) from all images in the training dataset $𝐷$. This can be done, for example, using SIFT. Let $𝐹={𝑓_1,…,𝑓_𝑀}$ be the set of descriptors extracted from all training images in $𝐷$. So, $𝑓_𝑖$ may be a descriptor that belongs to any of the training examples (it is not stored to which one).</p>
+<ol start="2">
+<li>
+<p><strong>Codebook generation</strong>
+   In this step, we cluster all descriptors $𝐹={𝑓_1,…,𝑓_𝑀}$ into $𝑘$ clusters using $k$-means (or another clustering algorithm. Therefore, we have $𝑘$ clusters, each of them with a centroid $𝐶={𝑐_1,…,𝑐_𝑘}$. These centroids represent the main features that are present in the whole training dataset $𝐷$. In this context, they are often known as codewords or visual words (hence the name bag-of-visual-words). The set of codewords $𝐶$ is often called  codebook or vocabulary.</p>
+</li>
+<li>
+<p><strong>Feature vector generation</strong></p>
+</li>
+</ol>
+<p>In this last step, given a new image $𝑢∉𝐷$, we  represent $𝑢$ as a $𝑘$-dimensional vector (where $𝑘$ is the number of codewords). To do that, we need to follow the following steps: 
+   1) Extract the raw features from $𝑢$ with e.g. SIFT (as we did for the training images). Let the descriptors of $𝑢$ be $𝑈={𝑢_1,…,𝑢_{|𝑈|}}$. 
+   2) Create a vector $𝐼$ of size $𝑘$ filled with zeros, where the $𝑖$th element of $𝐼$ corresponds to the $𝑖$th codeword (or cluster).
+   3) For each descriptor $𝑢_𝑖$, find the closest codeword (or centroid) in $𝐶$. Once found, increment the value at the $𝑗$th position of $𝐼$ (i.e., initially, from zero to one), where $𝑗$ is the closest codeword to the descriptor $𝑢_𝑖$ of the query image. The distance between $𝑢_𝑖$ and any of the codewords can be computed with the Euclidean distance, for example. </p>
+<p>At the end of this process, we obtain a feature vector $𝐼$ of size $k$ that represents a <strong>histogram of codewords</strong> for the query image. Here is an illustrative example of such a histogram:</p>
+<p><img alt="BOW" src="images/bow.jpg" /></p>
+<p>As can be seen, an image can be represented by a histogram of codewords. In this example, for the sake of clarity there are only 4 codewords.</p>
+<p>Alternatively, rather than the codeword frequency, we can use the tf-idf. In that case, instead representing each image with a vector that contains the frequency of the codewords, it is represented with the frequency of the codewords weighted by their presence in other images. </p>
+<!---
+### Implementation in OpenCV
+
+With the following code, we can train a BoW codebook from the SIFT descriptors extracted from all the images in a training set:
+
+<div class="highlight"><pre><span></span><code><span class="c1"># We create a BOW instance, in this case the vocabulary will have 100 codewords</span>
+<span class="n">BOW</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">BOWKMeansTrainer</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">sift</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">SIFT_create</span><span class="p">()</span>
+
+<span class="c1"># We go through all the images extracting SIFT descriptors and adding them so we can train our BOW.</span>
+<span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">imagesPath</span><span class="p">:</span>
+     <span class="n">image</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">cv</span><span class="o">.</span><span class="n">IMREAD_GRAYSCALE</span><span class="p">)</span>
+     <span class="n">keypoints</span><span class="p">,</span> <span class="n">descriptors</span> <span class="o">=</span> <span class="n">sift</span><span class="o">.</span><span class="n">detectAndCompute</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+     <span class="n">BOW</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">descriptors</span><span class="p">)</span>
+
+<span class="c1"># We train the BoW to obtain the codebook (vocabulary)</span>
+<span class="n">vocabulary</span> <span class="o">=</span> <span class="n">BOW</span><span class="o">.</span><span class="n">cluster</span><span class="p">()</span>
+</code></pre></div>
+
+Note that you must include the path to one or more images in the `imagesPath` variable in order to run the code. 
+
+Once the code is executed, we obtain a trained dictionary of `k=100` words. Next we can extract a descriptor and convert it into a histogram of codewords (this will be our new descriptor for that image).
+
+<div class="highlight"><pre><span></span><code><span class="c1"># We initialize the extractor, which will be based on SIFT and which will assign clusters by brute force</span>
+<span class="n">BOWExtractor</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">BOWImgDescriptorExtractor</span><span class="p">(</span><span class="n">sift</span><span class="p">,</span> <span class="n">cv</span><span class="o">.</span><span class="n">BFMatcher</span><span class="p">(</span><span class="n">cv</span><span class="o">.</span><span class="n">NORM_L2</span><span class="p">))</span>
+
+<span class="c1"># We assign to the declared extractor the vocabulary we had trained</span>
+<span class="n">BOWExtractor</span><span class="o">.</span><span class="n">setVocabulary</span><span class="p">(</span><span class="n">vocabulary</span><span class="p">)</span>
+
+<span class="c1"># Now we can extract the BoW feature of an image</span>
+<span class="n">BOWdescriptor</span> <span class="o">=</span> <span class="n">BOWExtractor</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">sift</span><span class="o">.</span><span class="n">detect</span><span class="p">(</span><span class="n">image</span><span class="p">))</span>
+
+<span class="c1"># We show the descriptor</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">BOWdescriptor</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+
+You can see complete code examples for training and recognition with BOW [here](https://github.com/briansrls/SIFTBOW/blob/master/SIFTBOW.py) and also [here](https://github.com/mgmacias95/Flower-Recognition/blob/master/flower.py).
+--->
+
+<h2 id="face-detection">Face detection<a class="headerlink" href="#face-detection" title="Permanent link">&para;</a></h2>
+<p>Identifying human faces in digital images is one of the few computer vision tasks that has been succesfully approached using machine learning. </p>
+<p><img alt="Face detection. Source: https://en.wikipedia.org/wiki/Face_detection#/media/File:Face_detection.jpg" src="images/Face_detection.jpg" /></p>
+<p>Face detection can be regarded as a specific case of object detection. The goal of object detection methods is to find the bounding boxes (locations and sizes) of specific objects in an image. </p>
+<!--
+https://www.baeldung.com/cs/viola-jones-algorithm#:~:text=Viola%2DJones%20algorithm%20is%20a,primarily%20conceived%20for%20face%20detection.
+
+https://en.wikipedia.org/wiki/Viola–Jones_object_detection_framework
+
+https://www.cs.ubc.ca/~lowe/425/slides/13-ViolaJones.pdf
+
+-->
+
+<h3 id="viola-jones">Viola-Jones<a class="headerlink" href="#viola-jones" title="Permanent link">&para;</a></h3>
+<p>The Viola-Jones algorithm, developed by Paul Viola and Michael Jones in 2001, is a pioneering technique in computer vision for its use in real-time face detection. It's recognized for its speed and accuracy, making it particularly suitable for applications like surveillance and web cameras. It was groundbreaking for its time, providing a robust and efficient method for real-time face detection, and its principles are still used and built upon in more modern face detection technologies.</p>
+<p>The full paper is <a href="https://www.cs.cmu.edu/~efros/courses/LBMV07/Papers/viola-cvpr-01.pdf">in this link</a>, but here we are going to see a summary of its key components, that will be described in detail below:</p>
+<ol>
+<li>
+<p><strong>Haar Features:</strong>
+   The algorithm uses Haar-like features, which are simple rectangular patterns. These features are used to capture the presence of oriented contrasts between different regions of an image. For example, a feature might focus on the intensity difference between the eye region and the cheek region in a face. </p>
+</li>
+<li>
+<p><strong>Integral image</strong>
+   The Haar features are efficiently calculated using the integral image. This is a representation of an image that allows for the rapid calculation of the sum of pixel values in any rectangular area. In this representation, each point $(x, y)$ in the integral image contains the sum of the pixel values above and to the left of $(x, y)$, inclusive.</p>
+</li>
+<li>
+<p><strong>Adaptive Boosting (AdaBoost):</strong>
+   AdaBoost is a supervised machine learning method based on boosting. In the context of the Viola-Jones algorithm, it is used to select a small number of important features from a larger set, and also to train classifiers that use these features. </p>
+</li>
+<li>
+<p><strong>Attentional Cascade:</strong>
+   The algorithm uses a cascade of classifiers to quickly discard non-facial regions in an image, thereby reducing the computational burden. Each stage of the cascade is a classifier made up of a combination of several features. Early stages use fewer features for a rough filter, effectively discarding large areas of the image where a face is unlikely to be found. Subsequent stages use more features for a finer analysis.</p>
+</li>
+</ol>
+<!--
+5. **Scaling for Multi-size Face Detection:**
+   To detect faces of various sizes, the Viola-Jones algorithm scales the detection window rather than the image, efficiently searching for faces across different scales.
+-->
+
+<p>Now, let's dive into these components:</p>
+<p><strong>1. Haar features</strong></p>
+<p>The Viola-Jones algorithm uses a set of features similar to Haar wavelets, which are a set of square-shaped functions. More specifically, the algorithm uses three types of Haar-like features represented in the following figure:</p>
+<p><img alt="Haar features" src="images/haar.png" /></p>
+<p>In these boxes, white represents $1$, and black is $-1$. Therefore, when convolving a feature with a part of the image, the sum of the pixels which lie within the white rectangles are subtracted from the sum of pixels in the black rectangles.</p>
+<p>Tthe feature value will be around zero for “flat regions”, i.e., where all the pixels have the same value. A large feature value will be obtained in the regions where the pixels in the black and white rectangles are very different.</p>
+<p>As shown below, the following features have great importance in face detection since the eye region is darker than the cheeks, and also darker than the nose region. </p>
+<p><img alt="Haar features. Source: https://www.baeldung.com/cs/viola-jones-algorithm#:~:text=Viola%2DJones%20algorithm%20is%20a,primarily%20conceived%20for%20face%20detection." src="images/fig2.jpeg" /></p>
+<p><strong>2. Integral image</strong></p>
+<p>The Haar features could be computed on an image using convolutions, but since they are  "flat" (black or white), they can also be efficiently calculated using the integral image. Hence, the Haar-like features can be computed very quickly using the integral image representation.</p>
+<p>The integral image is calculated as follows. Given a grayscale image $I$, the integral image value $ii(x, y)$ at the point $(x, y)$ is the sum of all the pixels above and to the left of $(x, y)$, inclusive:</p>
+<p>$ii(x, y)=\sum_{\substack{x^{\prime} \leq x \ y^{\prime} \leq y}} I\left(x^{\prime}, y^{\prime}\right)$</p>
+<p>The integral image can be computed in a single pass over the image $I$ with the following equation:</p>
+<p>$ii(x, y)=I(x, y)+ii(x, y-1)+ii(x-1, y)-ii(x-1, y-1)$</p>
+<p>Therefore, given an image with $N$ pixels, the time complexity of the integral image computation is $O(N)$.</p>
+<p>The sum in any rectangular area requires four values of the integral image, regardless of the window size:</p>
+<p><img alt="Integral image. Source: https://www.baeldung.com/cs/viola-jones-algorithm#:~:text=Viola%2DJones%20algorithm%20is%20a,primarily%20conceived%20for%20face%20detection." src="images/fig3.jpeg" /></p>
+<p>More specifically, the sum of pixel values within any rectangle $ABCD$ of a Haar-like feature can be computed as:</p>
+<p>$\sum_{\substack{x_0&lt;x \leq x_1 \ y_0&lt;y \leq y_1}} I(x, y)=ii(D)+ii(A)-ii(B)-ii(C)$</p>
+<p>Therefore, the calculation of the feature value for a black or white region is straighforward and very efficient, requiring only three sums. </p>
+<p>&lt;!--</p>
+<p>COJONUDO EJERCICIO: https://github.com/varunjain3/EigenFaces#1.-Viola-Jones-Face-Detection
+---&gt;</p>
+<p><strong>3. Adaptive Boosting (AdaBoost):</strong></p>
+<!--
+Buen video Adaboost (idea): https://www.youtube.com/watch?v=hfSKfuUVu9I
+Mejor explicación: https://www.analyticsvidhya.com/blog/2021/03/introduction-to-adaboost-algorithm-with-python-implementation/
+
+https://www.youtube.com/watch?v=O7J9Dl1cWmM
+
+
+-->
+
+<p>Adaptive boosting is a boosting ensemble technique that sequentally trains weak classifiers to create a strong classifier. </p>
+<p>You can see <a href="https://www.analyticsvidhya.com/blog/2021/03/">this explanation with an associated video</a> to get an overview of the AdaBoost algorithm. Basically, at each iteration, a weak classifier is trained using as input the dataset giving higher weights to data points that were wrongly predicted by previous classifiers. </p>
+<p><img alt="Adaboost. Source:https://www.analyticsvidhya.com/blog/2021/03/" src="images/adaboost.png" /></p>
+<p>The AdaBoost algorithm has the following steps:
+1. Train a model and perform inference
+2. Assign higher weights to misclassified points
+3. Train next model
+4. Repeat steps 2 and 3
+5. Get a weighted average of individual models</p>
+<p>At the end, a strong classifier is built with the weighted combination of individual models.</p>
+<p>In the context of Viola-Jones method, AdaBoost is used to select a small number of relevant visual features. Within any image sub-window, the total number of Harr-like features is very large (far larger than the number of pixels). In order to ensure fast classification, the learning process must exclude a large majority of the available features, and focus on a small set of critical features. </p>
+<p>Feature selection is achieved through a simple modification of AdaBoost: The weak learner is constrained so that each weak classifier returned depends only of a single feature. As a result, each stage of the boosting process  (which selects a new weak classifier) can be seen as a feature selection process. </p>
+<p>Viola-Jones selected the best 6000 features using feature selection, although with the best 200 features the method already achieved an accuracy of 95\%.</p>
+<p>The best two features chosen are shown in the previous figure (see 1. Haar features). They are focused on the detection of the eyes and the nose.</p>
+<p><strong>4. Classifier Cascades</strong></p>
+<p>The Viola-Jones method uses sliding windows on the image (originally of size 24x24) and, for each window, 6000 features are selected to detect if there is a face on a given region. </p>
+<p>Nonetheless, with 6000 features the complexity is still too high for real-time processing, so the authors found another solution. In an image, most pixels do not correspond to faces, so they devised a method to quickly detect if a window had face pixels, and if not, discard it.</p>
+<p>For this, Viola-Jones used a cascade of classifiers, also trained with AdaBoost. Instead of applying the 6000 features per window, the features were placed in different stages in a hierarchical manner (each with its own classifier). If in the first stage, the window returns that there is no face, it is discarded and the following ones are not considered. If it passes, the second phase is applied, and so on until the end is reached (if it passes all of them, then it is a face).</p>
+<p><img alt="Cascade of classifiers. Source: Viola-Jones paper" src="images/cascadehaar.jpg" /></p>
+<p>The 6000 features were separated into 38 stages with 1, 10, 25, 25 and 50 features in the first five stages, placing the best features first.</p>
+<h1 id="face-recognition">Face recognition<a class="headerlink" href="#face-recognition" title="Permanent link">&para;</a></h1>
+<p>A facial recognition system aims to match a given human face against a dataset of faces. Such a system is typically employed to authenticate users through identity verification services, and typically works by pinpointing and measuring facial features from a given image.</p>
+<p>Eigenfaces is a remarkable face recognition technique that has been widely used on devices before the deep learning era. We are going to describe it next. </p>
+<h2 id="eigenfaces">Eigenfaces<a class="headerlink" href="#eigenfaces" title="Permanent link">&para;</a></h2>
+<p><a href="https://sites.cs.ucsb.edu/~mturk/Papers/mturk-CVPR91.pdf">Eigenfaces</a> is a method used in computer vision and face recognition that involves a mathematical approach to process human faces. The concept can be broken down into several key points:</p>
+<ol>
+<li><strong>Principal Component Analysis (PCA)</strong> </li>
+</ol>
+<p>The core of eigenfaces is Principal Component Analysis, a statistical method used to reduce the dimensionality of large datasets while preserving most of the variance in the data. PCA identifies the directions (principal components) in which the data varies the most.</p>
+<ol start="2">
+<li><strong>Application to faces</strong></li>
+</ol>
+<p>In the context of face recognition, each face image is converted into a vector of pixel values. These vectors form a high-dimensional dataset. PCA is applied to this dataset to identify the principal components. These components are essentially the 'eigenfaces', which are a set of standardised face images. Eigenfaces serve as a basis set for representing faces. Any face can be approximated by a combination of these eigenfaces, so each face in the dataset can be represented as a weighted sum of eigenfaces. The weights indicate how much each eigenface contributes to the particular face image.</p>
+<ol start="3">
+<li><strong>Face Recognition</strong></li>
+</ol>
+<p>During training, a dataset of faces is used to compute the eigenfaces and the weights for each known face. For recognition, the same process is applied to a new face image to obtain its weights. The new face is then compared to the known faces by measuring the similarity in their weights.</p>
+<p>Here you can see some examples of eigenfaces:</p>
+<p><img alt="Eigenfaces. Source: https://en.wikipedia.org/wiki/Eigenface" src="images/Eigenfaces.png" /></p>
+<p>Any human face can be considered to be a combination of these standard eigenfaces. For example, one's face might be composed of the average face plus 10% from eigenface 1, 55% from eigenface 2, and even −3% from eigenface 3. Remarkably, it does not take many eigenfaces combined together to achieve a fair approximation of most faces. </p>
+<p>Also, because a person's face is not recorded by a digital photograph, but instead as just a list of values (one value for each eigenface in the database used), much less space is taken for each person's face. Therefore, one of the main advantages of this method is efficiency: Reducing faces to weights on eigenfaces significantly reduces the amount of data to be processed. Another strength is that eigenfaces can generalize well to new faces not seen during training.</p>
+<p>However, eigenfaces have also some limitations. The method may struggle with variations in lighting, facial expressions, and pose. Also, it relies on a good alignment of faces in the  images.</p>
+<p>Eigenfaces was one of the first successful applications of PCA to face recognition and has laid the groundwork for more sophisticated methods in computer vision and pattern recognition.</p>
+<!--
+
+Recognition: EigenFaces (+ Fisherfaces?)
+
+https://en.wikipedia.org/wiki/Eigenface
+
+http://www.scholarpedia.org/article/Eigenfaces
+
+Para ejercicio: https://github.com/varunjain3/EigenFaces/blob/master/EigenFace_Method.ipynb
+
+-->
+
+<p>Various extensions have been made to this approach. The eigenfeatures method combines facial metrics (measuring distance between facial features) with the eigenface representation. Fisherface uses linear discriminant analysis (LDA) and is less sensitive to variation in lighting and pose of the face. Fisherface uses labelled data to retain more of the class-specific information during the dimension reduction stage.</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": ".", "features": ["content.code.copy"], "search": "assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.220ee61c.min.js"></script>
+      
+    
+  </body>
+</html>
