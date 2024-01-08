@@ -502,14 +502,12 @@ https://www.cs.ubc.ca/~lowe/425/slides/13-ViolaJones.pdf
 <!--
 COJONUDO EJERCICIO: https://github.com/varunjain3/EigenFaces#1.-Viola-Jones-Face-Detection
 -->
-<p><strong>3. Adaptive Boosting (AdaBoost):</strong></p>
+<p><strong>3. Adaptive Boosting (AdaBoost)</strong></p>
 <!--
 Buen video Adaboost (idea): https://www.youtube.com/watch?v=hfSKfuUVu9I
 Mejor explicación: https://www.analyticsvidhya.com/blog/2021/03/introduction-to-adaboost-algorithm-with-python-implementation/
 
 https://www.youtube.com/watch?v=O7J9Dl1cWmM
-
-
 -->
 
 <p>Adaptive boosting is a boosting ensemble technique that sequentally trains weak classifiers to create a strong classifier. </p>
@@ -542,7 +540,7 @@ https://www.youtube.com/watch?v=O7J9Dl1cWmM
 <p><strong>Principal Component Analysis (PCA)</strong>. The core of eigenfaces is Principal Component Analysis, a statistical method used to reduce the dimensionality of large datasets while preserving most of the variance in the data. PCA identifies the directions (principal components) in which the data varies the most.</p>
 </li>
 <li>
-<p><strong>Application to faces</strong>. In the context of face recognition, each face image is converted into a vector of pixel values. These vectors form a high-dimensional dataset. PCA is applied to this dataset to identify the principal components. These components are essentially the 'eigenfaces', which are a set of standardised face images. Eigenfaces serve as a basis set for representing faces. Any face can be approximated by a combination of these eigenfaces, so each face in the dataset can be represented as a weighted sum of eigenfaces. The weights indicate how much each eigenface contributes to the particular face image.</p>
+<p><strong>Application to faces</strong>. In the context of face recognition, each face image is converted into a vector of pixel values. These vectors form a high-dimensional dataset. PCA is applied to this dataset to identify the principal components. These components are essentially the eigenfaces, which are a set of standardised face images. Any face can be approximated by a combination of these eigenfaces, so each face in the dataset can be represented as a weighted sum of eigenfaces. The weights indicate how much each eigenface contributes to the particular face image.</p>
 </li>
 <li>
 <p><strong>Face Recognition</strong>. During training, a dataset of faces is used to compute the eigenfaces and the weights for each known face. For recognition, the same process is applied to a new face image to obtain its weights. The new face is then compared to the known faces by measuring the similarity in their weights.</p>
@@ -551,7 +549,45 @@ https://www.youtube.com/watch?v=O7J9Dl1cWmM
 <p>Here you can see some examples of eigenfaces:</p>
 <p><img alt="Eigenfaces. Source: https://en.wikipedia.org/wiki/Eigenface" src="images/Eigenfaces.png" /></p>
 <p>Any human face can be considered to be a combination of these standard eigenfaces. For example, one's face might be composed of the average face plus 10% from eigenface 1, 55% from eigenface 2, and even −3% from eigenface 3. Remarkably, it does not take many eigenfaces combined together to achieve a fair approximation of most faces. </p>
-<p>Also, because a person's face is not recorded by a digital photograph, but instead as just a list of values (one value for each eigenface in the database used), much less space is taken for each person's face. Therefore, one of the main advantages of this method is efficiency: Reducing faces to weights on eigenfaces significantly reduces the amount of data to be processed. Another strength is that eigenfaces can generalize well to new faces not seen during training.</p>
+<p><strong>Methodology</strong></p>
+<p>To better understand the eigenfaces method, in this section we follow the <a href="https://pyimagesearch.com/2021/05/10/opencv-eigenfaces-for-face-recognition/">explanation from Adrian Rosebrock</a> that is summarized next.</p>
+<p>In order to train the eigenfaces algorithm, we need to form a single vector from the image. This is accomplished by flattening each image into a <script type="math/tex">K^2</script>-dim vector. All we have done here is taken a <script type="math/tex">K×K</script> image and concatenated all of the rows together, forming a single and long <script type="math/tex">K^2</script> list of grayscale pixel intensities.</p>
+<p><img alt="Eigenfaces flattening" src="images/eigenfaces_face_flatten.png" /></p>
+<p>After each image in the dataset has been flattened, we form a matrix of flattened images, where <script type="math/tex">Z</script> is the total number of images in our dataset:</p>
+<p><img alt="Eigenfaces training set matrix" src="images/eigenfaces_image_matrix.png" /></p>
+<p>Our entire training set is now contained in a single matrix, <script type="math/tex">M</script>.</p>
+<p>Given this matrix M, we are now ready to apply <strong>Principal Component Analysis (PCA)</strong>, the cornerstone of the Eigenfaces algorithm.</p>
+<p>A complete review associated with the linear algebra underlying PCA is outside the scope of this lesson (for a detailed review of the algorithm, please see <a href="https://www.coursera.org/learn/machine-learning">Andrew Ng’s discussion on the topic</a>), but the general outline of the algorithm follows:</p>
+<ol>
+<li>Compute the mean <script type="math/tex">\mu_{i}</script> of each column in the matrix, giving us the average pixel intensity value for every <script type="math/tex">(x, y)</script>-coordinate in the image dataset.</li>
+<li>Subtract the <script type="math/tex">\mu_{i}</script> from each column <script type="math/tex">c_{i}</script>. This is called mean centering the data and is a required step when performing PCA.</li>
+<li>Now that our matrix <script type="math/tex">M</script> has been mean centered, compute the covariance matrix.</li>
+<li>Perform an eigenvalue decomposition on the covariance matrix to get the eigenvalues <script type="math/tex">\lambda_{i}</script> and eigenvectors <script type="math/tex">\mathbf{X_{i}}</script>.</li>
+<li>Sort <script type="math/tex">\mathbf{X_{i}}</script> by <script type="math/tex">|\lambda_{i}|</script>, largest to smallest.</li>
+<li>Take the top <script type="math/tex">N</script> eigenvectors with the largest corresponding eigenvalue magnitude.</li>
+<li>Transform the input data by projecting (i.e., taking the dot product) it onto the space created by the top <script type="math/tex">N</script> eigenvectors. <strong>These eigenvectors are called our eigenfaces.</strong></li>
+</ol>
+<p>Before we perform actual face identification using the Eigenfaces algorithm, let’s actually discuss these eigenface representations:</p>
+<p><img alt="Eigenfaces matrix" src="images/eigenfaces_decomp_matrix.png" /></p>
+<p>After applying an eigenvalue decomposition of the matrix, <script type="math/tex">M</script>, we are left with a matrix <script type="math/tex">V</script>, containing N rows (our eigenvectors) each of dimensionality <script type="math/tex">K^{2}</script>.</p>
+<p>Each row in the matrix above is an eigenface with <script type="math/tex">K^{2}</script> entries — exactly like our original image.</p>
+<p>What does this mean? Well, since each of these eigenface representations is actually a <script type="math/tex">K^{2}</script> vector, we can reshape it into a <script type="math/tex">K\times K</script> bitmap:</p>
+<p><img alt="Eigenfaces mean and components" src="eigenfaces_mean_and_components.png" /></p>
+<p>The image on the left is simply the average of all faces in our dataset, while the figures on the right show the most prominent deviations from the mean in our face dataset.</p>
+<p>This can be thought of as a visualization of the dimension in which people’s faces vary the most. Lighter regions correspond to higher variation, where darker regions correspond to little to no variation. Here, we can see that our eigenface representation captures considerable variance in the eyes, hair, nose, lips, and cheek structure.</p>
+<p><strong>Identifying faces using Eigenfaces</strong></p>
+<p>Given our eigenface vectors, we can represent a new face by taking the dot product between the (flattened) input face image and the <script type="math/tex">N</script> eigenfaces. This allows us to represent each face as a linear combination of principal components:</p>
+<p>Query Face = 36% of Eigenface #1 + -8% of Eigenface #2 + … + 21% of Eigenface <script type="math/tex">N</script>
+</p>
+<p>To perform the actual face identification, Sirovich and Kirby proposed taking the Euclidean distance between projected eigenface representations. TShis is, in essence, a k-NN classifier:</p>
+<p><img alt="Eigenfaces face distances" src="eigenfaces_face_distances.png" /></p>
+<p>The smaller the Euclidean distance (denoted as the function, d), the more similar the two faces are — the overall identification is found by taking the label associated with the face with the smallest Euclidean distance.</p>
+<p>For example, in the previous figure the top image pair has a distance of 0 because the two faces are identical (i.e., the same image).</p>
+<p>The middle image pair has a distance of 0.07 — while the images are different they contain the same face.</p>
+<p>The third image pair has a much larger distance (9.81), indicating that the two faces presented to the Eigenfaces algorithm are not the same person.</p>
+<p>In practice, we often don’t rely on a simple k-NN algorithm for identification. Accuracy can be increased by using more advanced machine learning algorithms, such as Support Vector Machines (SVMs), Random Forests, etc. </p>
+<p><strong>Discussion</strong></p>
+<p>Since a person's face is not recorded by a digital photograph, but instead as just a list of values (one value for each eigenface in the database used), much less space is taken for each person's face. Therefore, one of the main advantages of this method is efficiency: Reducing faces to weights on eigenfaces significantly reduces the amount of data to be processed. Another strength is that eigenfaces can generalize well to new faces not seen during training.</p>
 <p>However, eigenfaces have also some limitations. The method may struggle with variations in lighting, facial expressions, and pose. Also, it relies on a good alignment of faces in the  images.</p>
 <p>Eigenfaces was one of the first successful applications of PCA to face recognition and has laid the groundwork for more sophisticated methods in computer vision and pattern recognition.</p>
 <!--
@@ -566,7 +602,7 @@ Para ejercicio: https://github.com/varunjain3/EigenFaces/blob/master/EigenFace_M
 
 -->
 
-<p>Various extensions have been made to this approach. The eigenfeatures method combines facial metrics (measuring distance between facial features) with the eigenface representation. Fisherface uses linear discriminant analysis (LDA) and is less sensitive to variation in lighting and pose of the face. Fisherface uses labelled data to retain more of the class-specific information during the dimension reduction stage.</p>
+<p>Various extensions have been made to this approach. The <a href="https://ieeexplore.ieee.org/abstract/document/531802">eigenfeatures</a> method combines facial metrics (measuring distance between facial features) with the eigenface representation. <a href="https://cseweb.ucsd.edu/classes/wi14/cse152-a/fisherface-pami97.pdf">Fisherfaces</a> use linear discriminant analysis (LDA) and is less sensitive to variation in lighting and pose of the face. </p>
 
 
 
