@@ -262,7 +262,6 @@ Before we perform actual face identification using the Eigenfaces algorithm, let
 
 ![Eigenfaces matrix](images/eigenfaces_decomp_matrix.png)
 
-
 After applying an eigenvalue decomposition of the matrix, \(M\), we are left with a matrix \(V\), containing N rows (our eigenvectors) each of dimensionality \(K^{2}\).
 
 Each row in the matrix above is an eigenface with \(K^{2}\) entries — exactly like our original image.
@@ -298,11 +297,11 @@ In practice, we often don’t rely on a simple k-NN algorithm for identification
 
 **Discussion**
 
+Eigenfaces was one of the first successful applications of PCA to face recognition and has laid the groundwork for more sophisticated methods in computer vision and pattern recognition.
+
 Since a person's face is not recorded by a digital photograph, but instead as just a list of values (one value for each eigenface in the database used), much less space is taken for each person's face. Therefore, one of the main advantages of this method is efficiency: Reducing faces to weights on eigenfaces significantly reduces the amount of data to be processed. Another strength is that eigenfaces can generalize well to new faces not seen during training.
 
 However, eigenfaces have also some limitations. The method may struggle with variations in lighting, facial expressions, and pose. Also, it relies on a good alignment of faces in the  images.
-
-Eigenfaces was one of the first successful applications of PCA to face recognition and has laid the groundwork for more sophisticated methods in computer vision and pattern recognition.
 
 <!--
 
