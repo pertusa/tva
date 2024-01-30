@@ -268,7 +268,7 @@ Each row in the matrix above is an eigenface with \(K^{2}\) entries — exactly 
 
 What does this mean? Well, since each of these eigenface representations is actually a \(K^{2}\) vector, we can reshape it into a \(K\times K\) bitmap:
 
-![Eigenfaces mean and components](eigenfaces_mean_and_components.png)
+![Eigenfaces mean and components](images/eigenfaces_mean_and_components.png)
 
 The image on the left is simply the average of all faces in our dataset, while the figures on the right show the most prominent deviations from the mean in our face dataset.
 
@@ -282,7 +282,7 @@ Query Face = 36% of Eigenface #1 + -8% of Eigenface #2 + … + 21% of Eigenface 
 
 To perform the actual face identification, Sirovich and Kirby proposed taking the Euclidean distance between projected eigenface representations. TShis is, in essence, a k-NN classifier:
 
-![Eigenfaces face distances](eigenfaces_face_distances.png)
+![Eigenfaces face distances](images/eigenfaces_face_distances.png)
 
 
 The smaller the Euclidean distance (denoted as the function, d), the more similar the two faces are — the overall identification is found by taking the label associated with the face with the smallest Euclidean distance.
