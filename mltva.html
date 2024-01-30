@@ -572,7 +572,7 @@ https://www.youtube.com/watch?v=O7J9Dl1cWmM
 <p>After applying an eigenvalue decomposition of the matrix, <script type="math/tex">M</script>, we are left with a matrix <script type="math/tex">V</script>, containing N rows (our eigenvectors) each of dimensionality <script type="math/tex">K^{2}</script>.</p>
 <p>Each row in the matrix above is an eigenface with <script type="math/tex">K^{2}</script> entries — exactly like our original image.</p>
 <p>What does this mean? Well, since each of these eigenface representations is actually a <script type="math/tex">K^{2}</script> vector, we can reshape it into a <script type="math/tex">K\times K</script> bitmap:</p>
-<p><img alt="Eigenfaces mean and components" src="eigenfaces_mean_and_components.png" /></p>
+<p><img alt="Eigenfaces mean and components" src="images/eigenfaces_mean_and_components.png" /></p>
 <p>The image on the left is simply the average of all faces in our dataset, while the figures on the right show the most prominent deviations from the mean in our face dataset.</p>
 <p>This can be thought of as a visualization of the dimension in which people’s faces vary the most. Lighter regions correspond to higher variation, where darker regions correspond to little to no variation. Here, we can see that our eigenface representation captures considerable variance in the eyes, hair, nose, lips, and cheek structure.</p>
 <p><strong>Identifying faces using Eigenfaces</strong></p>
@@ -580,7 +580,7 @@ https://www.youtube.com/watch?v=O7J9Dl1cWmM
 <p>Query Face = 36% of Eigenface #1 + -8% of Eigenface #2 + … + 21% of Eigenface <script type="math/tex">N</script>
 </p>
 <p>To perform the actual face identification, Sirovich and Kirby proposed taking the Euclidean distance between projected eigenface representations. TShis is, in essence, a k-NN classifier:</p>
-<p><img alt="Eigenfaces face distances" src="eigenfaces_face_distances.png" /></p>
+<p><img alt="Eigenfaces face distances" src="images/eigenfaces_face_distances.png" /></p>
 <p>The smaller the Euclidean distance (denoted as the function, d), the more similar the two faces are — the overall identification is found by taking the label associated with the face with the smallest Euclidean distance.</p>
 <p>For example, in the previous figure the top image pair has a distance of 0 because the two faces are identical (i.e., the same image).</p>
 <p>The middle image pair has a distance of 0.07 — while the images are different they contain the same face.</p>
