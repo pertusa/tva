@@ -363,24 +363,24 @@
 
 
 <h1 id="machine-learning-methods-for-computer-vision">Machine Learning methods for Computer Vision<a class="headerlink" href="#machine-learning-methods-for-computer-vision" title="Permanent link">&para;</a></h1>
-<p>As we have already seen, before the deep learning era most computer vision methods used handcrafted features. The difficulty in selecting the most suitable features for a vision task has hindered the reliability of such methods for image detection, classification, and segmentation.</p>
-<p>Nonetheless, some traditional machine learning methods have been successfully applied to computer vision. In this unit, we will see some of them, including dimensionality reduction (particularly, Bag of Words applied to local descriptors), and face detection and recognition (Viola-Jones and EigenFaces) that have been successfully applied in the literature.</p>
+<p>As we have seen, before the deep learning era most computer vision methods used handcrafted features. The difficulty of selecting the most suitable features for a vision task has hindered the reliability of such methods for image detection, classification, and segmentation.</p>
+<p>Nonetheless, some traditional machine learning methods have been successfully applied to computer vision. In this unit, we will examine some of them, including dimensionality reduction (particularly, Bag of Words applied to local descriptors), and face detection and recognition (Viola-Jones and EigenFaces), which have been successfully applied in the literature.</p>
 <h2 id="bag-of-features">Bag of Features<a class="headerlink" href="#bag-of-features" title="Permanent link">&para;</a></h2>
-<p>The Bag of Features (BoF) method, also known as Bag of Words (BoW), can be used to reduce the dimensionality of local descriptors.  BoW is a method to represent image features, and it is inspired by the bag-of-words model often used in the context of Natural Language Processing, hence the name. </p>
+<p>The Bag of Features (BoF) method, also known as Bag of Words (BoW), can be reduce the dimensionality of local descriptors.  BoW represents image features, and is inspired by the bag-of-words model often used in the context of Natural Language Processing, hence its name. </p>
 <p>This section explains the BOW method formally.</p>
-<p>Let's consider a training dataset <script type="math/tex">𝐷=\{𝑥_1,…,𝑥_𝑁\}</script> of <script type="math/tex">𝑁</script> training images. Note that an image <script type="math/tex">𝑥_𝑖\in 𝐷</script> may contain a different number of features (keypoints and descriptors) than another image. One of the main problems of SIFT or SURF is that performing a similarity search between two images implies to match all points from image <script type="math/tex">x_i</script> with the points of image <script type="math/tex">x_j</script>, which is a very costly procedure with a complexity <script type="math/tex">O(NM)</script>, being <script type="math/tex">N</script> and <script type="math/tex">M</script> the number of keypoints of <script type="math/tex">x_i</script> and <script type="math/tex">x_j</script>, respectively. </p>
-<p>BoW extracts a single feature vector of fixed-size <script type="math/tex">𝑘</script> for any image independently of its number of keypoints. </p>
+<p>Let's consider a training dataset <script type="math/tex">𝐷=\{𝑥_1,…,𝑥_𝑁\}</script> of <script type="math/tex">𝑁</script> training images. Note that an image <script type="math/tex">𝑥_𝑖\in 𝐷</script> may contain a different number of features (keypoints and descriptors) than another image. One of the main problems of SIFT or SURF is that performing a similarity search between two images implies matching all points from one image <script type="math/tex">x_i</script> with the points of other image <script type="math/tex">x_j</script>, which is a very costly procedure with a complexity <script type="math/tex">O(NM)</script>, being <script type="math/tex">N</script> and <script type="math/tex">M</script> the number of keypoints of <script type="math/tex">x_i</script> and <script type="math/tex">x_j</script>, respectively. </p>
+<p>BoW extracts a single feature vector of fixed size <script type="math/tex">𝑘</script> for any image independently of its number of keypoints. </p>
 <!-- Explicación: https://ai.stackexchange.com/questions/21914/what-are-bag-of-features-in-computer-vision -->
 
 <p>The BoW process can be divided into three steps:</p>
 <ol>
 <li>
 <p><strong>Feature extraction</strong> 
-   First, we extract the features (i.e. keypoints and descriptors) from all images in the training dataset <script type="math/tex">𝐷</script>. This can be done, for example, using SIFT. Let <script type="math/tex">𝐹=\{𝑓_1,…,𝑓_𝑀\}</script> be the set of descriptors extracted from all training images in <script type="math/tex">𝐷</script>. So, <script type="math/tex">𝑓_𝑖</script> may be a descriptor that belongs to any of the training examples (it is not stored to which one).</p>
+   First, we extract the features (i.e., keypoints and descriptors) from all images in the training dataset <script type="math/tex">𝐷</script>. This can be done, for example, using SIFT. Let <script type="math/tex">𝐹=\{𝑓_1,…,𝑓_𝑀\}</script> be the set of descriptors extracted from all training images in <script type="math/tex">𝐷</script>. So, <script type="math/tex">𝑓_𝑖</script> may be a descriptor that belongs to any of the training examples (it is not stored to which one).</p>
 </li>
 <li>
 <p><strong>Codebook generation</strong>.
-   In this step, we cluster all descriptors <script type="math/tex">𝐹=\{𝑓_1,…,𝑓_𝑀\}</script> into <script type="math/tex">𝑘</script> clusters using <script type="math/tex">k</script>-means (or another clustering algorithm. Therefore, we have <script type="math/tex">𝑘</script> clusters, each of them with a centroid <script type="math/tex">𝐶=\{𝑐_1,…,𝑐_𝑘\}</script>. These centroids represent the main features that are present in the whole training dataset <script type="math/tex">𝐷</script>. In this context, they are often known as codewords or visual words (hence the name bag-of-visual-words). The set of codewords <script type="math/tex">𝐶</script> is often called codebook or vocabulary.</p>
+   In this step, we cluster all descriptors <script type="math/tex">𝐹=\{𝑓_1,…,𝑓_𝑀\}</script> into <script type="math/tex">𝑘</script> clusters using <script type="math/tex">k</script>-means (or another clustering algorithm. Therefore, we have <script type="math/tex">𝑘</script> clusters, each of them with a centroid <script type="math/tex">𝐶=\{𝑐_1,…,𝑐_𝑘\}</script>. These centroids represent the main features present in the whole training dataset <script type="math/tex">𝐷</script>. In this context, they are often known as codewords or visual words (hence the name bag-of-visual-words). The set of codewords <script type="math/tex">𝐶</script> is often called a codebook or vocabulary.</p>
 </li>
 <li>
 <p><strong>Feature vector generation</strong>.
@@ -393,7 +393,7 @@
 <p>At the end of this process, we obtain a feature vector <script type="math/tex">𝐼</script> of size <script type="math/tex">k</script> that represents a <strong>histogram of codewords</strong> for the query image. Here is an illustrative example of such a histogram:</p>
 <p><img alt="BOW" src="images/bow.jpg" /></p>
 <p>As can be seen, an image can be represented by a histogram of codewords. In this example, for the sake of clarity there are only 4 codewords.</p>
-<p>Alternatively, rather than the codeword frequency, we can use the tf-idf. In that case, instead representing each image with a vector that contains the frequency of the codewords, it is represented with the frequency of the codewords weighted by their presence in other images. </p>
+<p>Alternatively, we can use the tf-idf rather than the codeword frequency. In that case, instead of representing each image with a vector containing the frequency of the codewords, it is represented with the frequency of the codewords weighted by their presence in other images. </p>
 <!---
 ### Implementation in OpenCV
 
@@ -437,7 +437,7 @@ You can see complete code examples for training and recognition with BOW [here](
 <h2 id="face-detection">Face detection<a class="headerlink" href="#face-detection" title="Permanent link">&para;</a></h2>
 <p>Identifying human faces in digital images is one of the few computer vision tasks that has been succesfully approached using machine learning. </p>
 <p><img alt="Face detection. Source: https://en.wikipedia.org/wiki/Face_detection#/media/File:Face_detection.jpg" src="images/Face_detection.jpg" /></p>
-<p>Face detection can be regarded as a specific case of object detection. The goal of object detection methods is to find the bounding boxes (locations and sizes) of specific objects in an image. </p>
+<p>Face detection can be considered as a specific type of object detection. The goal of object detection methods is to find the bounding boxes (locations and sizes) of specific objects in an image. </p>
 <!--
 https://www.baeldung.com/cs/viola-jones-algorithm#:~:text=Viola%2DJones%20algorithm%20is%20a,primarily%20conceived%20for%20face%20detection.
 
@@ -448,16 +448,16 @@ https://www.cs.ubc.ca/~lowe/425/slides/13-ViolaJones.pdf
 -->
 
 <h3 id="viola-jones">Viola-Jones<a class="headerlink" href="#viola-jones" title="Permanent link">&para;</a></h3>
-<p>The Viola-Jones algorithm, developed by Paul Viola and Michael Jones in 2001, is a pioneering technique in computer vision for its use in real-time face detection. It's recognized for its speed and accuracy, making it particularly suitable for applications like surveillance and web cameras. It was groundbreaking for its time, providing a robust and efficient method for real-time face detection, and its principles are still used and built upon in more modern face detection technologies.</p>
+<p>The Viola-Jones algorithm, developed by Paul Viola and Michael Jones in 2001, is a pioneering technique in computer vision for real-time face detection. It's recognized for its speed and accuracy, making it particularly suitable for applications like surveillance and web cameras. The algorithm was groundbreaking for its time, providing a robust and efficient method for real-time face detection, and its principles are still used and built upon in more modern face detection technologies.</p>
 <p>The full paper is <a href="https://www.cs.cmu.edu/~efros/courses/LBMV07/Papers/viola-cvpr-01.pdf">in this link</a>, but here we are going to see a summary of its key components, that will be described in detail below:</p>
 <ol>
 <li>
 <p><strong>Haar Features:</strong>
-   The algorithm uses Haar-like features, which are simple rectangular patterns. These features are used to capture the presence of oriented contrasts between different regions of an image. For example, a feature might focus on the intensity difference between the eye region and the cheek region in a face. </p>
+   The algorithm uses Haar-like features, which are simple rectangular patterns. These features capture the presence of oriented contrasts between different regions of an image. For example, a feature might focus on the intensity difference between the eye region and the cheek region in a face. </p>
 </li>
 <li>
 <p><strong>Integral image</strong>
-   The Haar features are efficiently calculated using the integral image. This is a representation of an image that allows for the rapid calculation of the sum of pixel values in any rectangular area. In this representation, each point <script type="math/tex">(x, y)</script> in the integral image contains the sum of the pixel values above and to the left of <script type="math/tex">(x, y)</script>, inclusive.</p>
+   The Haar features are efficiently calculated using the integral image. This representation of an image allows for the rapid calculation of the sum of pixel values in any rectangular area. In this representation, each point <script type="math/tex">(x, y)</script> in the integral image contains the sum of the pixel values above and to the left of <script type="math/tex">(x, y)</script>, inclusive.</p>
 </li>
 <li>
 <p><strong>Adaptive Boosting (AdaBoost):</strong>
@@ -478,11 +478,11 @@ https://www.cs.ubc.ca/~lowe/425/slides/13-ViolaJones.pdf
 <p>The Viola-Jones algorithm uses a set of features similar to Haar wavelets, which are a set of square-shaped functions. More specifically, the algorithm uses three types of Haar-like features represented in the following figure:</p>
 <p><img alt="Haar features" src="images/haar.png" /></p>
 <p>In these boxes, white represents 1, and black is -1. Therefore, when convolving a feature with a part of the image, the sum of the pixels which lie within the white rectangles are subtracted from the sum of pixels in the black rectangles.</p>
-<p>Tthe feature value will be around zero for “flat regions”, i.e., where all the pixels have the same value. A large feature value will be obtained in the regions where the pixels in the black and white rectangles are very different.</p>
-<p>As shown below, the following features have great importance in face detection since the eye region is darker than the cheeks, and also darker than the nose region. </p>
+<p>The feature value will be around zero for “flat regions” where all the pixels have the same value. However, a large feature value will be obtained in regions where the pixels in the black and white rectangles are very different.</p>
+<p>As shown below, the following features are very important in face detection since the eye region is darker than the cheeks, and also darker than the nose region. </p>
 <p><img alt="Haar features. Source: https://www.baeldung.com/cs/viola-jones-algorithm#:~:text=Viola%2DJones%20algorithm%20is%20a,primarily%20conceived%20for%20face%20detection." src="images/fig2.jpeg" /></p>
 <p><strong>2. Integral image</strong></p>
-<p>The Haar features could be computed on an image using convolutions, but since they are  "flat" (black or white), they can also be efficiently calculated using the integral image. Hence, the Haar-like features can be computed very quickly using the integral image representation.</p>
+<p>The Haar features can be computed on an image using convolutions, but since they are  "flat" (black or white), they can also be efficiently calculated using the integral image representation. Hence, the Haar-like features can be computed very quickly using this representation.</p>
 <p>The integral image is calculated as follows. Given a grayscale image <script type="math/tex">I</script>, the integral image value <script type="math/tex">ii(x, y)</script> at the point <script type="math/tex">(x, y)</script> is the sum of all the pixels above and to the left of <script type="math/tex">(x, y)</script>, inclusive:</p>
 <p>
 <script type="math/tex; mode=display">ii(x, y)=\sum_{\substack{x^{\prime} \leq x \\ y^{\prime} \leq y}} I\left(x^{\prime}, y^{\prime}\right)</script>
@@ -510,8 +510,8 @@ Mejor explicación: https://www.analyticsvidhya.com/blog/2021/03/introduction-to
 https://www.youtube.com/watch?v=O7J9Dl1cWmM
 -->
 
-<p>Adaptive boosting is a boosting ensemble technique that sequentally trains weak classifiers to create a strong classifier. </p>
-<p>You can see <a href="https://www.analyticsvidhya.com/blog/2021/03/">this explanation with an associated video</a> to get an overview of the AdaBoost algorithm. Basically, at each iteration, a weak classifier is trained using as input the dataset giving higher weights to data points that were wrongly predicted by previous classifiers. </p>
+<p>Adaptive boosting is a boosting ensemble technique that sequentially trains weak classifiers to form a strong classifier. </p>
+<p>You can view <a href="https://www.analyticsvidhya.com/blog/2021/03/">this explanation with an associated video</a> to get an overview of the AdaBoost algorithm. Essentially, at each iteration, a weak classifier is trained using as input the dataset and assigning higher weights to data points that were wrongly predicted by previous classifiers. </p>
 <p><img alt="Adaboost. Source:https://www.analyticsvidhya.com/blog/2021/03/" src="images/adaboost.png" /></p>
 <p>The AdaBoost algorithm has the following steps:
 1. Train a model and perform inference
@@ -519,25 +519,25 @@ https://www.youtube.com/watch?v=O7J9Dl1cWmM
 3. Train next model
 4. Repeat steps 2 and 3
 5. Get a weighted average of individual models</p>
-<p>At the end, a strong classifier is built with the weighted combination of individual models.</p>
+<p>Ultimately, a robust classifier is built with the weighted combination of individual models.</p>
 <p>In the context of Viola-Jones method, AdaBoost is used to select a small number of relevant visual features. Within any image sub-window, the total number of Harr-like features is very large (far larger than the number of pixels). In order to ensure fast classification, the learning process must exclude a large majority of the available features, and focus on a small set of critical features. </p>
 <p>Feature selection is achieved through a simple modification of AdaBoost: The weak learner is constrained so that each weak classifier returned depends only of a single feature. As a result, each stage of the boosting process  (which selects a new weak classifier) can be seen as a feature selection process. </p>
-<p>Viola-Jones selected the best 6000 features using feature selection, although with the best 200 features the method already achieved an accuracy of 95%.</p>
+<p>Viola-Jones used feature selection to select the best 6,000 features, although the method already achieved an accuracy of 95% with the best 200 features.</p>
 <p>The best two features chosen are shown in the previous figure (see 1. Haar features). They are focused on the detection of the eyes and the nose.</p>
 <p><strong>4. Classifier Cascades</strong></p>
-<p>The Viola-Jones method uses sliding windows on the image (originally of size 24x24) and, for each window, 6000 features are selected to detect if there is a face on a given region. </p>
-<p>Nonetheless, with 6000 features the complexity is still too high for real-time processing, so the authors found another solution. In an image, most pixels do not correspond to faces, so they devised a method to quickly detect if a window had face pixels, and if not, discard it.</p>
-<p>For this, Viola-Jones used a cascade of classifiers, also trained with AdaBoost. Instead of applying the 6000 features per window, the features were placed in different stages in a hierarchical manner (each with its own classifier). If in the first stage, the window returns that there is no face, it is discarded and the following ones are not considered. If it passes, the second phase is applied, and so on until the end is reached (if it passes all of them, then it is a face).</p>
+<p>The Viola-Jones method uses sliding windows on the image (originally of size 24x24) and, for each window, 6,000 features are selected to detect if there is a face on a given region. </p>
+<p>Nonetheless, with 6,000 features the complexity is still too high for real-time processing, so the authors found another solution. Since most pixels in an image do not correspond to faces, they devised a method to quickly detect if a window had face pixels, and discard it if not.</p>
+<p>To achieve this, Viola-Jones employed a cascade of classifiers, also trained with AdaBoost. Instead of applying the 6,000 features per window, the features were placed in different stages in a hierarchical manner (each with its own classifier). If in the first stage, the window returns that there is no face, it is discarded and the following ones are not considered. If it passes, the second stage is applied, and this continues until the final stage is reached (if it passes all stages, then it is a face).</p>
 <p><img alt="Cascade of classifiers. Source: Viola-Jones paper" src="images/cascadehaar.jpg" /></p>
-<p>The 6000 features were separated into 38 stages with 1, 10, 25, 25 and 50 features in the first five stages, placing the best features first.</p>
+<p>The 6,000 features were separated into 38 stages with 1, 10, 25, 25 and 50 features in the first five stages, placing the best features first.</p>
 <h2 id="face-recognition">Face recognition<a class="headerlink" href="#face-recognition" title="Permanent link">&para;</a></h2>
-<p>A facial recognition system aims to match a given human face against a dataset of faces. Such a system is typically employed to authenticate users through identity verification services, and typically works by pinpointing and measuring facial features from a given image.</p>
+<p>A facial recognition system aims to match a human face against a dataset of faces. Such a system is typically employed to authenticate users through identity verification services, and works by pinpointing and measuring facial features from a given image.</p>
 <p>Eigenfaces is a remarkable face recognition technique that has been widely used on devices before the deep learning era. We are going to describe it next. </p>
 <h3 id="eigenfaces">Eigenfaces<a class="headerlink" href="#eigenfaces" title="Permanent link">&para;</a></h3>
 <p><a href="https://sites.cs.ucsb.edu/~mturk/Papers/mturk-CVPR91.pdf">Eigenfaces</a> is a method used in computer vision and face recognition that involves a mathematical approach to process human faces. The concept can be broken down into several key points:</p>
 <ol>
 <li>
-<p><strong>Principal Component Analysis (PCA)</strong>. The core of eigenfaces is Principal Component Analysis, a statistical method used to reduce the dimensionality of large datasets while preserving most of the variance in the data. PCA identifies the directions (principal components) in which the data varies the most.</p>
+<p><strong>Principal Component Analysis (PCA)</strong>. This is the core of eigenfaces. It is a statistical method used to reduce the dimensionality of large datasets while preserving most of the variance in the data. PCA identifies the directions (principal components) in which the data varies the most.</p>
 </li>
 <li>
 <p><strong>Application to faces</strong>. In the context of face recognition, each face image is converted into a vector of pixel values. These vectors form a high-dimensional dataset. PCA is applied to this dataset to identify the principal components. These components are essentially the eigenfaces, which are a set of standardised face images. Any face can be approximated by a combination of these eigenfaces, so each face in the dataset can be represented as a weighted sum of eigenfaces. The weights indicate how much each eigenface contributes to the particular face image.</p>
@@ -551,12 +551,12 @@ https://www.youtube.com/watch?v=O7J9Dl1cWmM
 <p>Any human face can be considered to be a combination of these standard eigenfaces. For example, one's face might be composed of the average face plus 10% from eigenface 1, 55% from eigenface 2, and even −3% from eigenface 3. Remarkably, it does not take many eigenfaces combined together to achieve a fair approximation of most faces. </p>
 <p><strong>Methodology</strong></p>
 <p>To better understand the eigenfaces method, in this section we follow the <a href="https://pyimagesearch.com/2021/05/10/opencv-eigenfaces-for-face-recognition/">explanation from Adrian Rosebrock</a> that is summarized next.</p>
-<p>In order to train the eigenfaces algorithm, we need to form a single vector from the image. This is accomplished by flattening each image into a <script type="math/tex">K^2</script>-dim vector. All we have done here is taken a <script type="math/tex">K×K</script> image and concatenated all of the rows together, forming a single and long <script type="math/tex">K^2</script> list of grayscale pixel intensities.</p>
+<p>To train the eigenfaces algorithm, we need to form a single vector from the image. This is accomplished by flattening each image into a <script type="math/tex">K^2</script>-dim vector. All we have done here is taken a <script type="math/tex">K×K</script> image and concatenated all of the rows together, forming a single and long <script type="math/tex">K^2</script> list of grayscale pixel intensities.</p>
 <p><img alt="Eigenfaces flattening" src="images/eigenfaces_face_flatten.png" /></p>
 <p>After each image in the dataset has been flattened, we form a matrix of flattened images, where <script type="math/tex">Z</script> is the total number of images in our dataset:</p>
 <p><img alt="Eigenfaces training set matrix" src="images/eigenfaces_image_matrix.png" /></p>
 <p>Our entire training set is now contained in a single matrix, <script type="math/tex">M</script>.</p>
-<p>Given this matrix M, we are now ready to apply <strong>Principal Component Analysis (PCA)</strong>, the cornerstone of the Eigenfaces algorithm.</p>
+<p>Given this matrix <script type="math/tex">M</script>, we are now ready to apply <strong>Principal Component Analysis (PCA)</strong>, the cornerstone of the Eigenfaces algorithm.</p>
 <p>A complete review associated with the linear algebra underlying PCA is outside the scope of this lesson (for a detailed review of the algorithm, please see <a href="https://www.coursera.org/learn/machine-learning">Andrew Ng’s discussion on the topic</a>), but the general outline of the algorithm follows:</p>
 <ol>
 <li>Compute the mean <script type="math/tex">\mu_{i}</script> of each column in the matrix, giving us the average pixel intensity value for every <script type="math/tex">(x, y)</script>-coordinate in the image dataset.</li>
@@ -569,27 +569,27 @@ https://www.youtube.com/watch?v=O7J9Dl1cWmM
 </ol>
 <p>Before we perform actual face identification using the Eigenfaces algorithm, let’s actually discuss these eigenface representations:</p>
 <p><img alt="Eigenfaces matrix" src="images/eigenfaces_decomp_matrix.png" /></p>
-<p>After applying an eigenvalue decomposition of the matrix, <script type="math/tex">M</script>, we are left with a matrix <script type="math/tex">V</script>, containing N rows (our eigenvectors) each of dimensionality <script type="math/tex">K^{2}</script>.</p>
+<p>After applying an eigenvalue decomposition to the matrix, <script type="math/tex">M</script>, we are left with a matrix <script type="math/tex">V</script>, containing <script type="math/tex">N</script> rows (our eigenvectors) each of dimensionality <script type="math/tex">K^{2}</script>.</p>
 <p>Each row in the matrix above is an eigenface with <script type="math/tex">K^{2}</script> entries — exactly like our original image.</p>
 <p>What does this mean? Well, since each of these eigenface representations is actually a <script type="math/tex">K^{2}</script> vector, we can reshape it into a <script type="math/tex">K\times K</script> bitmap:</p>
 <p><img alt="Eigenfaces mean and components" src="images/eigenfaces_mean_and_components.png" /></p>
 <p>The image on the left is simply the average of all faces in our dataset, while the figures on the right show the most prominent deviations from the mean in our face dataset.</p>
-<p>This can be thought of as a visualization of the dimension in which people’s faces vary the most. Lighter regions correspond to higher variation, where darker regions correspond to little to no variation. Here, we can see that our eigenface representation captures considerable variance in the eyes, hair, nose, lips, and cheek structure.</p>
+<p>This can be thought of as a visualization of the dimension in which people’s faces differ the most. Lighter regions indicate greater variation, where darker regions correspond to little to no variation. Here, we can see that our eigenface representation captures considerable variance in the eyes, hair, nose, lips, and cheek structure.</p>
 <p><strong>Identifying faces using Eigenfaces</strong></p>
 <p>Given our eigenface vectors, we can represent a new face by taking the dot product between the (flattened) input face image and the <script type="math/tex">N</script> eigenfaces. This allows us to represent each face as a linear combination of principal components:</p>
 <p>Query Face = 36% of Eigenface #1 + -8% of Eigenface #2 + … + 21% of Eigenface <script type="math/tex">N</script>
 </p>
-<p>To perform the actual face identification, Sirovich and Kirby proposed taking the Euclidean distance between projected eigenface representations. TShis is, in essence, a k-NN classifier:</p>
+<p>To perform the actual face identification, Sirovich and Kirby proposed taking the Euclidean distance between projected eigenface representations. This is, in essence, a k-NN classifier:</p>
 <p><img alt="Eigenfaces face distances" src="images/eigenfaces_face_distances.png" /></p>
-<p>The smaller the Euclidean distance (denoted as the function, d), the more similar the two faces are — the overall identification is found by taking the label associated with the face with the smallest Euclidean distance.</p>
+<p>The smaller the Euclidean distance (denoted as the function <script type="math/tex">d</script>), the more similar the two faces are — the overall identification is found by taking the label associated with the face with the smallest Euclidean distance.</p>
 <p>For example, in the previous figure the top image pair has a distance of 0 because the two faces are identical (i.e., the same image).</p>
 <p>The middle image pair has a distance of 0.07 — while the images are different they contain the same face.</p>
 <p>The third image pair has a much larger distance (9.81), indicating that the two faces presented to the Eigenfaces algorithm are not the same person.</p>
-<p>In practice, we often don’t rely on a simple k-NN algorithm for identification. Accuracy can be increased by using more advanced machine learning algorithms, such as Support Vector Machines (SVMs), Random Forests, etc. </p>
+<p>In practice, we often do not rely on a simple k-NN algorithm for identification. Accuracy can be increased by using more advanced machine learning algorithms, such as Support Vector Machines (SVMs), Random Forests, etc. </p>
 <p><strong>Discussion</strong></p>
-<p>Eigenfaces was one of the first successful applications of PCA to face recognition and has laid the groundwork for more sophisticated methods in computer vision and pattern recognition.</p>
-<p>Since a person's face is not recorded by a digital photograph, but instead as just a list of values (one value for each eigenface in the database used), much less space is taken for each person's face. Therefore, one of the main advantages of this method is efficiency: Reducing faces to weights on eigenfaces significantly reduces the amount of data to be processed. Another strength is that eigenfaces can generalize well to new faces not seen during training.</p>
-<p>However, eigenfaces have also some limitations. The method may struggle with variations in lighting, facial expressions, and pose. Also, it relies on a good alignment of faces in the  images.</p>
+<p>Eigenfaces was one of the first successful applications of PCA for face recognition and has stablished the foundation for more sophisticated methods in computer vision and pattern recognition.</p>
+<p>Since a person's face is not represented by a digital photograph, but instead as a list of values (one for each eigenface in the database), significantly less space is needed for each face. Therefore, one of the main advantages of this method is efficiency: Reducing faces to weights on eigenfaces significantly reduces the amount of data to be processed. Another strength is that eigenfaces can generalize well to new faces not seen during training.</p>
+<p>However, eigenfaces also have some limitations. The method may struggle with variations in lighting, facial expressions, and pose. Also, it relies on a good alignment of faces in the images.</p>
 <!--
 
 Recognition: EigenFaces (+ Fisherfaces?)
@@ -602,7 +602,7 @@ Para ejercicio: https://github.com/varunjain3/EigenFaces/blob/master/EigenFace_M
 
 -->
 
-<p>Various extensions have been made to this approach. The <a href="https://ieeexplore.ieee.org/abstract/document/531802">eigenfeatures</a> method combines facial metrics (measuring distance between facial features) with the eigenface representation. <a href="https://cseweb.ucsd.edu/classes/wi14/cse152-a/fisherface-pami97.pdf">Fisherfaces</a> use linear discriminant analysis (LDA) and is less sensitive to variation in lighting and pose of the face. </p>
+<p>Various extensions have been made to this approach. The <a href="https://ieeexplore.ieee.org/abstract/document/531802">eigenfeatures</a> method combines facial metrics (measuring distance between facial features) with the eigenface representation. <a href="https://cseweb.ucsd.edu/classes/wi14/cse152-a/fisherface-pami97.pdf">Fisherfaces</a> use linear discriminant analysis (LDA) and are less sensitive to variations in lighting and facial pose. </p>
 
 
 
