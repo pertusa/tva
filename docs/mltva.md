@@ -176,7 +176,7 @@ https://www.youtube.com/watch?v=O7J9Dl1cWmM
 
 Adaptive boosting is a boosting ensemble technique that sequentially trains weak classifiers to form a strong classifier. 
 
-You can view [this explanation with an associated video](https://www.analyticsvidhya.com/blog/2021/03/) to get an overview of the AdaBoost algorithm. Essentially, at each iteration, a weak classifier is trained using as input the dataset and assigning higher weights to data points that were wrongly predicted by previous classifiers. 
+You can view [this explanation](https://www.analyticsvidhya.com/blog/2021/06/adaboost-a-brief-introduction-to-ensemble-learning/) to get an overview of the AdaBoost algorithm. Essentially, at each iteration, a weak classifier is trained using as input the dataset and assigning higher weights to data points that were wrongly predicted by previous classifiers. 
 
 ![Adaboost. Source:https://www.analyticsvidhya.com/blog/2021/03/](images/adaboost.png)
 
