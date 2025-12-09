@@ -182,11 +182,11 @@ You can read [this explanation](https://www.analyticsvidhya.com/blog/2021/06/ada
 
 The AdaBoost algorithm has the following steps:
 
-1. Train a model and perform inference
-2. Assign higher weights to misclassified points
-3. Train next model
-4. Repeat steps 2 and 3
-5. Get a weighted average of individual models
+1. Train a model and perform inference.
+2. Assign higher weights to misclassified points.
+3. Train next model.
+4. Repeat steps 2 and 3.
+5. Get a weighted average of individual models.
 
 Ultimately, a robust classifier is built with the weighted combination of the individual models.
 
