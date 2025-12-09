@@ -10,8 +10,9 @@
       
       
       
+      
       <link rel="icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.1.21">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
     
     
       
@@ -19,14 +20,17 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.eebd395e.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.7e37652d.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.ecc896b0.min.css">
+        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
       
       
 
+
     
+    
+      
     
     
       
@@ -38,7 +42,7 @@
       
     
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -55,7 +59,6 @@
     
     <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="Teal" data-md-color-accent="Teal">
   
-    
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -82,11 +85,12 @@
     <a href="." title="TVA" class="md-header__button md-logo" aria-label="TVA" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -109,28 +113,35 @@
     
     
     
-      <label class="md-header__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
-      </label>
-      <div class="md-search" data-md-component="search" role="dialog">
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
       <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
       </label>
       <nav class="md-search__options" aria-label="Search">
         
         <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
       </nav>
       
     </form>
     <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
             Initializing search
@@ -141,6 +152,7 @@
     </div>
   </div>
 </div>
+      
     
     
   </nav>
@@ -165,12 +177,13 @@
                     
 
 
+
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="." title="TVA" class="md-nav__button md-logo" aria-label="TVA" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
     TVA
@@ -180,11 +193,10 @@
     
       
       
-      
-
   
   
     
+  
   
   
     <li class="md-nav__item md-nav__item--active">
@@ -196,12 +208,28 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Machine learning methods for computer vision
+          
+  
+  
+  <span class="md-ellipsis">
+    Machine learning methods for computer vision
+    
+  </span>
+  
+
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="mltva.html" class="md-nav__link md-nav__link--active">
-        Machine learning methods for computer vision
+        
+  
+  
+  <span class="md-ellipsis">
+    Machine learning methods for computer vision
+    
+  </span>
+  
+
       </a>
       
         
@@ -221,14 +249,18 @@
       
         <li class="md-nav__item">
   <a href="#bag-of-features" class="md-nav__link">
-    Bag of Features
+    <span class="md-ellipsis">
+      Bag of Features
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#face-detection" class="md-nav__link">
-    Face detection
+    <span class="md-ellipsis">
+      Face detection
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="Face detection">
@@ -236,7 +268,9 @@
         
           <li class="md-nav__item">
   <a href="#viola-jones" class="md-nav__link">
-    Viola-Jones
+    <span class="md-ellipsis">
+      Viola-Jones
+    </span>
   </a>
   
 </li>
@@ -248,7 +282,9 @@
       
         <li class="md-nav__item">
   <a href="#face-recognition" class="md-nav__link">
-    Face recognition
+    <span class="md-ellipsis">
+      Face recognition
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="Face recognition">
@@ -256,7 +292,9 @@
         
           <li class="md-nav__item">
   <a href="#eigenfaces" class="md-nav__link">
-    Eigenfaces
+    <span class="md-ellipsis">
+      Eigenfaces
+    </span>
   </a>
   
 </li>
@@ -302,14 +340,18 @@
       
         <li class="md-nav__item">
   <a href="#bag-of-features" class="md-nav__link">
-    Bag of Features
+    <span class="md-ellipsis">
+      Bag of Features
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#face-detection" class="md-nav__link">
-    Face detection
+    <span class="md-ellipsis">
+      Face detection
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="Face detection">
@@ -317,7 +359,9 @@
         
           <li class="md-nav__item">
   <a href="#viola-jones" class="md-nav__link">
-    Viola-Jones
+    <span class="md-ellipsis">
+      Viola-Jones
+    </span>
   </a>
   
 </li>
@@ -329,7 +373,9 @@
       
         <li class="md-nav__item">
   <a href="#face-recognition" class="md-nav__link">
-    Face recognition
+    <span class="md-ellipsis">
+      Face recognition
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="Face recognition">
@@ -337,7 +383,9 @@
         
           <li class="md-nav__item">
   <a href="#eigenfaces" class="md-nav__link">
-    Eigenfaces
+    <span class="md-ellipsis">
+      Eigenfaces
+    </span>
   </a>
   
 </li>
@@ -362,13 +410,14 @@
                   
 
 
+
 <h1 id="machine-learning-methods-for-computer-vision">Machine Learning methods for Computer Vision<a class="headerlink" href="#machine-learning-methods-for-computer-vision" title="Permanent link">&para;</a></h1>
 <p>As we have seen, before the deep learning era most computer vision methods used handcrafted features. The difficulty of selecting the most suitable features for a vision task has hindered the reliability of such methods for image detection, classification, and segmentation.</p>
 <p>Nonetheless, some traditional machine learning methods have been successfully applied to computer vision. In this unit, we will examine some of them, including dimensionality reduction (particularly, Bag of Words applied to local descriptors), and face detection and recognition (Viola-Jones and EigenFaces), which have been successfully applied in the literature.</p>
 <h2 id="bag-of-features">Bag of Features<a class="headerlink" href="#bag-of-features" title="Permanent link">&para;</a></h2>
 <p>The Bag of Features (BoF) method, also known as Bag of Words (BoW), can be reduce the dimensionality of local descriptors.  BoW represents image features, and is inspired by the bag-of-words model often used in the context of Natural Language Processing, hence its name. </p>
 <p>This section explains the BOW method formally.</p>
-<p>Let's consider a training dataset <script type="math/tex">𝐷=\{𝑥_1,…,𝑥_𝑁\}</script> of <script type="math/tex">𝑁</script> training images. Note that an image <script type="math/tex">𝑥_𝑖\in 𝐷</script> may contain a different number of features (keypoints and descriptors) than another image. One of the main problems of SIFT or SURF is that performing a similarity search between two images implies matching all points from one image <script type="math/tex">x_i</script> with the points of other image <script type="math/tex">x_j</script>, which is a very costly procedure with a complexity <script type="math/tex">O(NM)</script>, being <script type="math/tex">N</script> and <script type="math/tex">M</script> the number of keypoints of <script type="math/tex">x_i</script> and <script type="math/tex">x_j</script>, respectively. </p>
+<p>Let's consider a training dataset <script type="math/tex">𝐷=\{𝑥_1,…,𝑥_𝑁\}</script> of <script type="math/tex">𝑁</script> training images. Note that an image <script type="math/tex">𝑥_𝑖\in 𝐷</script> may contain a different number of features (keypoints and descriptors) than another image. One of the main problems of SIFT or SURF is that performing a similarity search between two images implies matching all points from one image <script type="math/tex">x_i</script> with the points of another image <script type="math/tex">x_j</script>, which is a very costly procedure with a complexity <script type="math/tex">O(NM)</script>, being <script type="math/tex">N</script> and <script type="math/tex">M</script> the number of keypoints of <script type="math/tex">x_i</script> and <script type="math/tex">x_j</script>, respectively.  </p>
 <p>BoW extracts a single feature vector of fixed size <script type="math/tex">𝑘</script> for any image independently of its number of keypoints. </p>
 <!-- Explicación: https://ai.stackexchange.com/questions/21914/what-are-bag-of-features-in-computer-vision -->
 
@@ -449,7 +498,7 @@ https://www.cs.ubc.ca/~lowe/425/slides/13-ViolaJones.pdf
 
 <h3 id="viola-jones">Viola-Jones<a class="headerlink" href="#viola-jones" title="Permanent link">&para;</a></h3>
 <p>The Viola-Jones algorithm, developed by Paul Viola and Michael Jones in 2001, is a pioneering technique in computer vision for real-time face detection. It's recognized for its speed and accuracy, making it particularly suitable for applications like surveillance and web cameras. The algorithm was groundbreaking for its time, providing a robust and efficient method for real-time face detection, and its principles are still used and built upon in more modern face detection technologies.</p>
-<p>The full paper is <a href="https://www.cs.cmu.edu/~efros/courses/LBMV07/Papers/viola-cvpr-01.pdf">in this link</a>, but here we are going to see a summary of its key components, that will be described in detail below:</p>
+<p>The full paper is <a href="https://www.cs.cmu.edu/~efros/courses/LBMV07/Papers/viola-cvpr-01.pdf">in this link</a>, but here we are going to see a summary of its key components described in detail below:</p>
 <ol>
 <li>
 <p><strong>Haar Features:</strong>
@@ -511,18 +560,20 @@ https://www.youtube.com/watch?v=O7J9Dl1cWmM
 -->
 
 <p>Adaptive boosting is a boosting ensemble technique that sequentially trains weak classifiers to form a strong classifier. </p>
-<p>You can view <a href="https://www.analyticsvidhya.com/blog/2021/06/adaboost-a-brief-introduction-to-ensemble-learning/">this explanation</a> to get an overview of the AdaBoost algorithm. Essentially, at each iteration, a weak classifier is trained using as input the dataset and assigning higher weights to data points that were wrongly predicted by previous classifiers. </p>
+<p>You can read <a href="https://www.analyticsvidhya.com/blog/2021/06/adaboost-a-brief-introduction-to-ensemble-learning/">this explanation</a> to get an overview of the AdaBoost algorithm. Essentially, at each iteration, a weak classifier is trained using as input the dataset and assigning higher weights to data points that were wrongly predicted by previous classifiers. </p>
 <p><img alt="Adaboost. Source:https://www.analyticsvidhya.com/blog/2021/03/" src="images/adaboost.png" /></p>
-<p>The AdaBoost algorithm has the following steps:
-1. Train a model and perform inference
-2. Assign higher weights to misclassified points
-3. Train next model
-4. Repeat steps 2 and 3
-5. Get a weighted average of individual models</p>
-<p>Ultimately, a robust classifier is built with the weighted combination of individual models.</p>
-<p>In the context of Viola-Jones method, AdaBoost is used to select a small number of relevant visual features. Within any image sub-window, the total number of Harr-like features is very large (far larger than the number of pixels). In order to ensure fast classification, the learning process must exclude a large majority of the available features, and focus on a small set of critical features. </p>
-<p>Feature selection is achieved through a simple modification of AdaBoost: The weak learner is constrained so that each weak classifier returned depends only of a single feature. As a result, each stage of the boosting process  (which selects a new weak classifier) can be seen as a feature selection process. </p>
-<p>Viola-Jones used feature selection to select the best 6,000 features, although the method already achieved an accuracy of 95% with the best 200 features.</p>
+<p>The AdaBoost algorithm has the following steps:</p>
+<ol>
+<li>Train a model and perform inference.</li>
+<li>Assign higher weights to misclassified points.</li>
+<li>Train next model.</li>
+<li>Repeat steps 2 and 3.</li>
+<li>Get a weighted average of individual models.</li>
+</ol>
+<p>Ultimately, a robust classifier is built with the weighted combination of the individual models.</p>
+<p>In the context of Viola-Jones method, AdaBoost is used to select a small number of relevant visual features. Within any image sub-window, the total number of Haar-like features is very large (far larger than the number of pixels). In order to ensure fast classification, the learning process must exclude a large majority of the available features and focus on a small set of critical features. </p>
+<p>Feature selection is achieved through a simple modification of AdaBoost: The weak learner is constrained so that each weak classifier returned depends only of a single feature. As a result, each stage of the boosting process (which selects a new weak classifier) can be seen as a feature selection process. </p>
+<p>Viola-Jones uses feature selection to select the best 6,000 features, although the method already achieves an accuracy of 95% with the best 200 features.</p>
 <p>The best two features chosen are shown in the previous figure (see 1. Haar features). They are focused on the detection of the eyes and the nose.</p>
 <p><strong>4. Classifier Cascades</strong></p>
 <p>The Viola-Jones method uses sliding windows on the image (originally of size 24x24) and, for each window, 6,000 features are selected to detect if there is a face on a given region. </p>
@@ -532,7 +583,7 @@ https://www.youtube.com/watch?v=O7J9Dl1cWmM
 <p>The 6,000 features were separated into 38 stages with 1, 10, 25, 25 and 50 features in the first five stages, placing the best features first.</p>
 <h2 id="face-recognition">Face recognition<a class="headerlink" href="#face-recognition" title="Permanent link">&para;</a></h2>
 <p>A facial recognition system aims to match a human face against a dataset of faces. Such a system is typically employed to authenticate users through identity verification services, and works by pinpointing and measuring facial features from a given image.</p>
-<p>Eigenfaces is a remarkable face recognition technique that has been widely used on devices before the deep learning era. We are going to describe it next. </p>
+<p>Eigenfaces is a remarkable face recognition technique that has been widely used on devices before the deep learning emerged. We are going to describe it next. </p>
 <h3 id="eigenfaces">Eigenfaces<a class="headerlink" href="#eigenfaces" title="Permanent link">&para;</a></h3>
 <p><a href="https://sites.cs.ucsb.edu/~mturk/Papers/mturk-CVPR91.pdf">Eigenfaces</a> is a method used in computer vision and face recognition that involves a mathematical approach to process human faces. The concept can be broken down into several key points:</p>
 <ol>
@@ -548,7 +599,7 @@ https://www.youtube.com/watch?v=O7J9Dl1cWmM
 </ol>
 <p>Here you can see some examples of eigenfaces:</p>
 <p><img alt="Eigenfaces. Source: https://en.wikipedia.org/wiki/Eigenface" src="images/Eigenfaces.png" /></p>
-<p>Any human face can be considered to be a combination of these standard eigenfaces. For example, one's face might be composed of the average face plus 10% from eigenface 1, 55% from eigenface 2, and even −3% from eigenface 3. Remarkably, it does not take many eigenfaces combined together to achieve a fair approximation of most faces. </p>
+<p>Any human face can be considered to be a combination of these standard eigenfaces. For example, one's face might be composed of the average face plus 10% from eigenface 1.55% from eigenface 2, and even −3% from eigenface 3. Remarkably, it does not take many eigenfaces combined together to achieve a fair approximation of most faces. </p>
 <p><strong>Methodology</strong></p>
 <p>To better understand the eigenfaces method, in this section we follow the <a href="https://pyimagesearch.com/2021/05/10/opencv-eigenfaces-for-face-recognition/">explanation from Adrian Rosebrock</a> that is summarized next.</p>
 <p>To train the eigenfaces algorithm, we need to form a single vector from the image. This is accomplished by flattening each image into a <script type="math/tex">K^2</script>-dim vector. All we have done here is taken a <script type="math/tex">K×K</script> image and concatenated all of the rows together, forming a single and long <script type="math/tex">K^2</script> list of grayscale pixel intensities.</p>
@@ -585,7 +636,7 @@ https://www.youtube.com/watch?v=O7J9Dl1cWmM
 <p>For example, in the previous figure the top image pair has a distance of 0 because the two faces are identical (i.e., the same image).</p>
 <p>The middle image pair has a distance of 0.07 — while the images are different they contain the same face.</p>
 <p>The third image pair has a much larger distance (9.81), indicating that the two faces presented to the Eigenfaces algorithm are not the same person.</p>
-<p>In practice, we often do not rely on a simple k-NN algorithm for identification. Accuracy can be increased by using more advanced machine learning algorithms, such as Support Vector Machines (SVMs), Random Forests, etc. </p>
+<p>In practice, we often do not rely on a simple <script type="math/tex">k</script>-NN algorithm for identification. Accuracy can be increased by using more advanced machine learning algorithms, such as Support Vector Machines (SVMs), Random Forests, etc. </p>
 <p><strong>Discussion</strong></p>
 <p>Eigenfaces was one of the first successful applications of PCA for face recognition and has stablished the foundation for more sophisticated methods in computer vision and pattern recognition.</p>
 <p>Since a person's face is not represented by a digital photograph, but instead as a list of values (one for each eigenface in the database), significantly less space is needed for each face. Therefore, one of the main advantages of this method is efficiency: Reducing faces to weights on eigenfaces significantly reduces the amount of data to be processed. Another strength is that eigenfaces can generalize well to new faces not seen during training.</p>
@@ -608,11 +659,19 @@ Para ejercicio: https://github.com/varunjain3/EigenFaces/blob/master/EigenFace_M
 
 
 
+
+
+
+
+
+
+
                 
               </article>
             </div>
           
           
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
       </main>
@@ -640,14 +699,15 @@ Para ejercicio: https://github.com/varunjain3/EigenFaces/blob/master/EigenFace_M
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": ".", "features": ["content.code.copy"], "search": "assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="assets/javascripts/bundle.220ee61c.min.js"></script>
       
-        
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        
+      <script id="__config" type="application/json">{"base": ".", "features": ["content.code.copy"], "search": "assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.50899def.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
       
     
   </body>
