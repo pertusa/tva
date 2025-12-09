@@ -10,7 +10,7 @@ The Bag of Features (BoF) method, also known as Bag of Words (BoW), can be reduc
 
 This section explains the BOW method formally.
 
-Let's consider a training dataset \(𝐷=\{𝑥_1,…,𝑥_𝑁\}\) of \(𝑁\) training images. Note that an image \(𝑥_𝑖\in 𝐷\) may contain a different number of features (keypoints and descriptors) than another image. One of the main problems of SIFT or SURF is that performing a similarity search between two images implies matching all points from one image \(x_i\) with the points of other image \(x_j\), which is a very costly procedure with a complexity \(O(NM)\), being \(N\) and \(M\) the number of keypoints of \(x_i\) and \(x_j\), respectively.  
+Let's consider a training dataset \(𝐷=\{𝑥_1,…,𝑥_𝑁\}\) of \(𝑁\) training images. Note that an image \(𝑥_𝑖\in 𝐷\) may contain a different number of features (keypoints and descriptors) than another image. One of the main problems of SIFT or SURF is that performing a similarity search between two images implies matching all points from one image \(x_i\) with the points of another image \(x_j\), which is a very costly procedure with a complexity \(O(NM)\), being \(N\) and \(M\) the number of keypoints of \(x_i\) and \(x_j\), respectively.  
 
 BoW extracts a single feature vector of fixed size \(𝑘\) for any image independently of its number of keypoints. 
 
@@ -101,7 +101,7 @@ https://www.cs.ubc.ca/~lowe/425/slides/13-ViolaJones.pdf
 
 The Viola-Jones algorithm, developed by Paul Viola and Michael Jones in 2001, is a pioneering technique in computer vision for real-time face detection. It's recognized for its speed and accuracy, making it particularly suitable for applications like surveillance and web cameras. The algorithm was groundbreaking for its time, providing a robust and efficient method for real-time face detection, and its principles are still used and built upon in more modern face detection technologies.
 
-The full paper is [in this link](https://www.cs.cmu.edu/~efros/courses/LBMV07/Papers/viola-cvpr-01.pdf), but here we are going to see a summary of its key components, that will be described in detail below:
+The full paper is [in this link](https://www.cs.cmu.edu/~efros/courses/LBMV07/Papers/viola-cvpr-01.pdf), but here we are going to see a summary of its key components described in detail below:
 
 1. **Haar Features:**
    The algorithm uses Haar-like features, which are simple rectangular patterns. These features capture the presence of oriented contrasts between different regions of an image. For example, a feature might focus on the intensity difference between the eye region and the cheek region in a face. 
@@ -176,24 +176,25 @@ https://www.youtube.com/watch?v=O7J9Dl1cWmM
 
 Adaptive boosting is a boosting ensemble technique that sequentially trains weak classifiers to form a strong classifier. 
 
-You can view [this explanation](https://www.analyticsvidhya.com/blog/2021/06/adaboost-a-brief-introduction-to-ensemble-learning/) to get an overview of the AdaBoost algorithm. Essentially, at each iteration, a weak classifier is trained using as input the dataset and assigning higher weights to data points that were wrongly predicted by previous classifiers. 
+You can read [this explanation](https://www.analyticsvidhya.com/blog/2021/06/adaboost-a-brief-introduction-to-ensemble-learning/) to get an overview of the AdaBoost algorithm. Essentially, at each iteration, a weak classifier is trained using as input the dataset and assigning higher weights to data points that were wrongly predicted by previous classifiers. 
 
 ![Adaboost. Source:https://www.analyticsvidhya.com/blog/2021/03/](images/adaboost.png)
 
 The AdaBoost algorithm has the following steps:
+
 1. Train a model and perform inference
 2. Assign higher weights to misclassified points
 3. Train next model
 4. Repeat steps 2 and 3
 5. Get a weighted average of individual models
 
-Ultimately, a robust classifier is built with the weighted combination of individual models.
+Ultimately, a robust classifier is built with the weighted combination of the individual models.
 
-In the context of Viola-Jones method, AdaBoost is used to select a small number of relevant visual features. Within any image sub-window, the total number of Harr-like features is very large (far larger than the number of pixels). In order to ensure fast classification, the learning process must exclude a large majority of the available features, and focus on a small set of critical features. 
+In the context of Viola-Jones method, AdaBoost is used to select a small number of relevant visual features. Within any image sub-window, the total number of Haar-like features is very large (far larger than the number of pixels). In order to ensure fast classification, the learning process must exclude a large majority of the available features and focus on a small set of critical features. 
 
-Feature selection is achieved through a simple modification of AdaBoost: The weak learner is constrained so that each weak classifier returned depends only of a single feature. As a result, each stage of the boosting process  (which selects a new weak classifier) can be seen as a feature selection process. 
+Feature selection is achieved through a simple modification of AdaBoost: The weak learner is constrained so that each weak classifier returned depends only of a single feature. As a result, each stage of the boosting process (which selects a new weak classifier) can be seen as a feature selection process. 
 
-Viola-Jones used feature selection to select the best 6,000 features, although the method already achieved an accuracy of 95% with the best 200 features.
+Viola-Jones uses feature selection to select the best 6,000 features, although the method already achieves an accuracy of 95% with the best 200 features.
 
 The best two features chosen are shown in the previous figure (see 1. Haar features). They are focused on the detection of the eyes and the nose.
 
@@ -213,7 +214,7 @@ The 6,000 features were separated into 38 stages with 1, 10, 25, 25 and 50 featu
 
 A facial recognition system aims to match a human face against a dataset of faces. Such a system is typically employed to authenticate users through identity verification services, and works by pinpointing and measuring facial features from a given image.
 
-Eigenfaces is a remarkable face recognition technique that has been widely used on devices before the deep learning era. We are going to describe it next. 
+Eigenfaces is a remarkable face recognition technique that has been widely used on devices before the deep learning emerged. We are going to describe it next. 
 
 ### Eigenfaces
 
@@ -229,7 +230,7 @@ Here you can see some examples of eigenfaces:
 
  ![Eigenfaces. Source: https://en.wikipedia.org/wiki/Eigenface](images/Eigenfaces.png)
 
-Any human face can be considered to be a combination of these standard eigenfaces. For example, one's face might be composed of the average face plus 10% from eigenface 1, 55% from eigenface 2, and even −3% from eigenface 3. Remarkably, it does not take many eigenfaces combined together to achieve a fair approximation of most faces. 
+Any human face can be considered to be a combination of these standard eigenfaces. For example, one's face might be composed of the average face plus 10% from eigenface 1.55% from eigenface 2, and even −3% from eigenface 3. Remarkably, it does not take many eigenfaces combined together to achieve a fair approximation of most faces. 
 
 
 **Methodology**
@@ -292,7 +293,7 @@ The middle image pair has a distance of 0.07 — while the images are different 
 
 The third image pair has a much larger distance (9.81), indicating that the two faces presented to the Eigenfaces algorithm are not the same person.
 
-In practice, we often do not rely on a simple k-NN algorithm for identification. Accuracy can be increased by using more advanced machine learning algorithms, such as Support Vector Machines (SVMs), Random Forests, etc. 
+In practice, we often do not rely on a simple \(k\)-NN algorithm for identification. Accuracy can be increased by using more advanced machine learning algorithms, such as Support Vector Machines (SVMs), Random Forests, etc. 
 
 **Discussion**
 
