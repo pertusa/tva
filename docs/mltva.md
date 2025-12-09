@@ -10,7 +10,7 @@ The Bag of Features (BoF) method, also known as Bag of Words (BoW), can be reduc
 
 This section explains the BOW method formally.
 
-Let's consider a training dataset \(𝐷=\{𝑥_1,…,𝑥_𝑁\}\) of \(𝑁\) training images. Note that an image \(𝑥_𝑖\in 𝐷\) may contain a different number of features (keypoints and descriptors) than another image. One of the main problems of SIFT or SURF is that performing a similarity search between two images implies matching all points from one image \(x_i\) with the points of other image \(x_j\), which is a very costly procedure with a complexity \(O(NM)\), being \(N\) and \(M\) the number of keypoints of \(x_i\) and \(x_j\), respectively. 
+Let's consider a training dataset \(𝐷=\{𝑥_1,…,𝑥_𝑁\}\) of \(𝑁\) training images. Note that an image \(𝑥_𝑖\in 𝐷\) may contain a different number of features (keypoints and descriptors) than another image. One of the main problems of SIFT or SURF is that performing a similarity search between two images implies matching all points from one image \(x_i\) with the points of other image \(x_j\), which is a very costly procedure with a complexity \(O(NM)\), being \(N\) and \(M\) the number of keypoints of \(x_i\) and \(x_j\), respectively.  
 
 BoW extracts a single feature vector of fixed size \(𝑘\) for any image independently of its number of keypoints. 
 
